@@ -1,0 +1,29 @@
+zeroinstall-injector (0.28-0ubuntu1) gutsy; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 16 Jun 2007 20:02:42 +0100
+
+zeroinstall-injector (0.27-0ubuntu1) gutsy; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 28 Apr 2007 15:18:10 +0100
+
+zeroinstall-injector (0.26-0ubuntu1) feisty; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 10 Mar 2007 09:47:09 +0000
+
+zeroinstall-injector (0.25-0ubuntu1) feisty; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Tue, 23 Jan 2007 21:50:46 +0000
+
+zeroinstall-injector (0.24-0ubuntu1) feisty; urgency=low
+
+  * Initial Ubuntu release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Mon, 25 Dec 2006 11:45:36 +0000

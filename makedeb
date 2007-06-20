@@ -1,0 +1,36 @@
+#!/bin/sh
+if [ "$1" = "" ]; then
+  echo Usage: makedeb source.tgz
+  exit 1
+fi
+
+orig=`basename $1 | sed 's/-\([0-9]\)/_\1/' | sed 's/.tar.gz$/.orig.tar.gz/'`
+
+echo "Copying $1 as $orig..."
+
+rm -rf build-deb
+mkdir build-deb || exit 1
+cp "$1" build-deb/"$orig" || exit 1
+
+cd build-deb || exit 1
+tar xzf "$orig" || exit 1
+
+name=`basename $1 | sed 's/.tar.gz$//'`
+cd "$name" || exit 1
+
+#patch -p0 < ../../desktop-install.patch || exit 1
+
+cp -r ../../debian . || exit 1
+
+if [ "$2" = "--test" ]; then
+  dpkg-buildpackage -S -sa -kTesting -rfakeroot
+else
+  dpkg-buildpackage -S -sa -k59A53CC1 -rfakeroot
+fi
+
+echo Running lintian...
+lintian -i ../*.changes
+
+echo Hint:
+echo cd build-deb
+echo dput revu *_source.changes
