@@ -44,4 +44,5 @@ lintian -i ../*.changes
 
 echo Hint:
 echo cd "source-$VERSION"
-echo dput revu *_source.changes
+echo '(untested)'
+echo dupload -t mentors *_source.changes
