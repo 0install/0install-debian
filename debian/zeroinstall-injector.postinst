@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+ZEROINSTALLUSER=zeroinst
+SYSTEMCACHE=/var/cache/0install.net/implementations
+
+adduser --system --home "$SYSTEMCACHE" --group --disabled-password "$ZEROINSTALLUSER"
+
+#DEBHELPER#

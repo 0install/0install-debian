@@ -1,3 +1,9 @@
+zeroinstall-injector (0.30-0ubuntu1) gutsy; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Thu, 16 Aug 2007 19:52:20 +0100
+
 zeroinstall-injector (0.29-0ubuntu1) gutsy; urgency=low
 
   * New upstream release.
