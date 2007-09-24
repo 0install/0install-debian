@@ -44,5 +44,4 @@ lintian -i ../*.changes
 
 echo Hint:
 echo cd "source-$VERSION"
-echo '(untested)'
 echo dupload -t mentors *_source.changes

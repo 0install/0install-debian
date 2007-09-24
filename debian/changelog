@@ -1,6 +1,6 @@
 zeroinstall-injector (0.29-1) unstable; urgency=low
 
-  * New release.
+  * New release. Closes: #416162
 
  -- Thomas Leonard <talex5@gmail.com>  Sat, 23 Jun 2007 07:57:20 +0000
 
