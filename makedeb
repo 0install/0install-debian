@@ -5,23 +5,25 @@ if [ "$1" = "" ]; then
 fi
 
 VERSION="$1"
-TMP_TAR="/tmp/zeroinstall-injector-$VERSION.tar.gz"
+TMP_TAR="/tmp/zeroinstall-injector-$VERSION.tar"
 
-if [ ! -e "$TMP_TAR" ]; then
-  echo Missing: $TMP_TAR
+if [ ! -e "$TMP_TAR.bz2" ]; then
+  echo Missing: $TMP_TAR.bz2
   exit 1
 fi
 
-orig="zeroinstall-injector_$VERSION.orig.tar.gz"
+orig="zeroinstall-injector_$VERSION.orig.tar"
 
-echo "Copying $TMP_TAR as $orig..."
+echo "Copying $TMP_TAR.bz2 as $orig.gz..."
 
 rm -rf "source-$VERSION" "binary-$VERSION"
 mkdir "source-$VERSION"
-cp "$TMP_TAR" "source-$VERSION/$orig"
+cp "$TMP_TAR.bz2" "source-$VERSION/$orig.bz2"
+# See http://doc.ubuntu.com/ubuntu/packagingguide/C/basic-mistakes.html
+(cd source-$VERSION && bunzip2 "$orig.bz2" && gzip -9 "$orig")
 
 (cd "source-$VERSION" &&
- tar xzf "$orig" &&
+ tar xzf "$orig.gz" &&
  cd "zeroinstall-injector-$VERSION" &&
  #patch -p0 < ../../desktop-install.patch
  cp -r ../../debian .)
