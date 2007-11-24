@@ -5,6 +5,7 @@ set -e
 ZEROINSTALLUSER=zeroinst
 SYSTEMCACHE=/var/cache/0install.net/implementations
 
-adduser --system --home "$SYSTEMCACHE" --group --disabled-password "$ZEROINSTALLUSER"
+adduser --system --group --no-create-home --disabled-password "$ZEROINSTALLUSER"
+chown "$ZEROINSTALLUSER:$ZEROINSTALLUSER" "$SYSTEMCACHE"
 
 #DEBHELPER#
