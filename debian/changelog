@@ -1,6 +1,6 @@
 zeroinstall-injector (0.31-1) unstable; urgency=low
 
-  * New upstream release. Closes #443208
+  * New upstream release. Closes: #443208
 
  -- Thomas Leonard <talex5@gmail.com>  Sun, 18 Nov 2007 18:54:08 +0000
 
