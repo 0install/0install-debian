@@ -1,3 +1,18 @@
+zeroinstall-injector (0.32-2) unstable; urgency=low
+
+  * Sponsored upload by Jens Peter Secher <jps@debian.org>:
+    + Moved the url in the description to the new Homepage field.
+    + Bumped Standards-Version to 3.7.3.
+    + Removed commented out line in debian/rules to avoid Lintian error.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 26 Mar 2008 21:28:04 +0100
+
+zeroinstall-injector (0.32-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 23 Feb 2008 18:52:21 +0000
+
 zeroinstall-injector (0.31-1) unstable; urgency=low
 
   * New upstream release. Closes: #443208

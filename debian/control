@@ -4,7 +4,8 @@ Priority: optional
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 5.0.37.2), python-central (>= 0.5)
 Build-Depends-Indep: python-dev
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
+Homepage: http://0install.net/
 XS-Python-Version: >= 2.3
 
 Package: zeroinstall-injector
@@ -30,5 +31,3 @@ Description: run programs by URL
  directories outside of the cache, such as /usr/bin) and no code from the
  package is run during install or uninstall. The system can automatically
  check for updates when software is run.
- .
- Homepage: http://0install.net/

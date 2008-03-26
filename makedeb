@@ -25,7 +25,7 @@ cp "$TMP_TAR.bz2" "source-$VERSION/$orig.bz2"
 (cd "source-$VERSION" &&
  tar xzf "$orig.gz" &&
  cd "zeroinstall-injector-$VERSION" &&
- #patch -p0 < ../../desktop-install.patch
+ patch -p1 < ../../report-error.patch
  cp -r ../../debian .)
 
 echo Building binary...

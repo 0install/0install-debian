@@ -14,7 +14,6 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
-	#python setup.py clean
 	-rm zeroinstall/__init__.pyc
 	dh_clean 
 
@@ -46,4 +45,5 @@ binary-arch: build install
 # We have nothing to do by default.
 
 binary: binary-indep binary-arch
+
 .PHONY: build clean binary-indep binary-arch binary install configure
