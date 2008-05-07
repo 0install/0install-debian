@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 5.0.37.2), python-central (>= 0.5)
 Build-Depends-Indep: python-dev
 Standards-Version: 3.7.3
 Homepage: http://0install.net/
-XS-Python-Version: >= 2.3
+XS-Python-Version: >= 2.4
 
 Package: zeroinstall-injector
 Architecture: all
