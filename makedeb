@@ -25,7 +25,7 @@ cp "$TMP_TAR.bz2" "source-$VERSION/$orig.bz2"
 (cd "source-$VERSION" &&
  tar xzf "$orig.gz" &&
  cd "zeroinstall-injector-$VERSION" &&
- patch -p1 < ../../report-error.patch
+ #patch -p1 < ../../report-error.patch
  cp -r ../../debian .)
 
 echo Building binary...
@@ -42,7 +42,7 @@ else
 fi
 
 echo Running lintian...
-lintian -i ../*.changes
+lintian -i ../*.changes || echo Lintian failed
 
 echo Hint:
 echo cd "source-$VERSION"
