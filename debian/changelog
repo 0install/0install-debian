@@ -1,3 +1,10 @@
+zeroinstall-injector (0.40-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated build for changes in Ubuntu's distutils.
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 24 Apr 2009 20:36:58 +0100
+
 zeroinstall-injector (0.39-1) unstable; urgency=low
 
   * New upstream release.
