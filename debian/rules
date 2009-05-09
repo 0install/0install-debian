@@ -18,7 +18,7 @@ install: build-stamp
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	python $(CURDIR)/setup.py install --root=$(CURDIR)/debian/zeroinstall-injector
+	python $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
 	rm -r $(CURDIR)/debian/zeroinstall-injector/usr/man
 
 binary-indep: build install
