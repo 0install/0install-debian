@@ -1,6 +1,6 @@
 Source: zeroinstall-injector
 Section: admin
-Priority: optional
+Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 5.0.37.2), python-central (>= 0.5)
 Build-Depends-Indep: python-dev

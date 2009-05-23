@@ -1,6 +1,6 @@
 zeroinstall-injector (0.40-2) unstable; urgency=low
 
-  * Use --install-layout=deb flag when building. Closes #374118
+  * Use --install-layout=deb flag when building. Closes: #527933
 
  -- Thomas Leonard <talex5@gmail.com>  Sat, 09 May 2009 16:46:32 +0100
 
