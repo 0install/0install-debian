@@ -1,3 +1,9 @@
+zeroinstall-injector (0.41-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 27 Jun 2009 18:35:01 +0100
+
 zeroinstall-injector (0.40-2) unstable; urgency=low
 
   * Use --install-layout=deb flag when building. Closes: #527933
