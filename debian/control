@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 5.0.37.2), python-central (>= 0.5)
 Build-Depends-Indep: python-dev
-Standards-Version: 3.8.1
+Standards-Version: 3.8.2
 Homepage: http://0install.net/
 XS-Python-Version: >= 2.5
 DM-Upload-Allowed: yes
