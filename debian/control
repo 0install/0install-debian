@@ -11,7 +11,7 @@ DM-Upload-Allowed: yes
 
 Package: zeroinstall-injector
 Architecture: all
-Depends: ${python:Depends}, gnupg, python-gtk2, bzip2, binutils, python-glade2, adduser, xdg-utils
+Depends: ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
 Recommends: unzip, rpm, lzma
 Suggests: plash, cabextract
 XB-Python-Version: ${python:Versions}
