@@ -5,29 +5,35 @@ if [ "$1" = "" ]; then
 fi
 
 VERSION="$1"
-TMP_TAR="/tmp/zeroinstall-injector-$VERSION.tar"
+TMP_TAR="/tmp/zeroinstall-injector-$VERSION.tar.bz2"
 
-if [ ! -e "$TMP_TAR.bz2" ]; then
-  echo Missing: $TMP_TAR.bz2
+if [ ! -e "$TMP_TAR" ]; then
+  echo Missing: $TMP_TAR
   exit 1
 fi
 
-orig="zeroinstall-injector_$VERSION.orig.tar"
+orig="zeroinstall-injector_$VERSION.orig.tar.bz2"
 
-echo "Copying $TMP_TAR.bz2 as $orig.gz..."
+echo "Copying $TMP_TAR as build-$VERSION/$orig..."
 
+BUILD_DIR="build-$VERSION"
 rm -rf "build-$VERSION"
-mkdir "build-$VERSION"
-cp "$TMP_TAR.bz2" "build-$VERSION/$orig.bz2"
+mkdir -p "$BUILD_DIR"
+cp "$TMP_TAR" "$BUILD_DIR/$orig"
 # See http://doc.ubuntu.com/ubuntu/packagingguide/C/basic-mistakes.html
-(cd build-$VERSION && bunzip2 "$orig.bz2" && gzip -9 "$orig")
+#(cd build-$VERSION && bunzip2 "$orig.bz2" && gzip -9 "$orig")
+# (no longer needed with Debian 3.0 format)
 
-cd "build-$VERSION"
-tar xzf "$orig.gz"
-cd "zeroinstall-injector-$VERSION" &&
+cd "$BUILD_DIR"
+tar xjf "$orig"
+cd "zeroinstall-injector-$VERSION"
+cp -r ../../debian .
+
+#cd "zeroinstall-injector-$VERSION" &&
  #patch -p1 < ../../report-error.patch
- cp -r ../../debian .
-pdebuild
+# cp -r ../../debian .
+#pdebuild
+pdebuild --debsign-k Testing
 
 # echo Building binary...
 # cp -r "source-$VERSION" "binary-$VERSION"
