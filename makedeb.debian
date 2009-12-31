@@ -32,8 +32,8 @@ cp -r ../../debian .
 #cd "zeroinstall-injector-$VERSION" &&
  #patch -p1 < ../../report-error.patch
 # cp -r ../../debian .
-#pdebuild
-pdebuild --debsign-k Testing
+pdebuild
+#pdebuild --debsign-k Testing
 
 # echo Building binary...
 # cp -r "source-$VERSION" "binary-$VERSION"
