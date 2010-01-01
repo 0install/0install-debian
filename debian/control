@@ -13,7 +13,7 @@ Package: zeroinstall-injector
 Architecture: all
 Depends: ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
 Recommends: unzip, rpm, lzma
-Suggests: plash, cabextract
+Suggests: cabextract
 XB-Python-Version: ${python:Versions}
 Description: run programs by URL
  The Zero Install Injector makes it easy for users to install software without
