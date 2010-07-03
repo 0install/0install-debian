@@ -27,6 +27,7 @@ cp "$TMP_TAR" "$BUILD_DIR/$orig"
 cd "$BUILD_DIR"
 tar xjf "$orig"
 cd "zeroinstall-injector-$VERSION"
+make locale/zero-install.pot	# So launchpad will translate it
 cp -r ../../debian .
 
 #cd "zeroinstall-injector-$VERSION" &&
