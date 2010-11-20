@@ -1,3 +1,5 @@
+  * Fixed typo in description. Closes: #604098
+
 zeroinstall-injector (0.50-1) unstable; urgency=low
 
   * New upstream release.

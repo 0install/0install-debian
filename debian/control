@@ -22,7 +22,7 @@ Description: run programs by URL
  its dependencies to use.
  .
  Zero Install is a decentralised installation system (there is no central
- repository; all packages are identified by URLs), loosly-coupled (if different
+ repository; all packages are identified by URLs), loosely-coupled (if different
  programs require different versions of a library then both versions are
  installed in parallel, without conflicts), and has an emphasis on security
  (all package descriptions are GPG-signed, and contain cryptographic hashes of
