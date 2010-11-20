@@ -3,7 +3,7 @@ Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 5.0.37.2), python-central (>= 0.5)
-Standards-Version: 3.8.4
+Standards-Version: 3.9.0.0
 Homepage: http://0install.net/
 XS-Python-Version: >= 2.5
 DM-Upload-Allowed: yes
@@ -12,7 +12,7 @@ Package: zeroinstall-injector
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
 Recommends: unzip, rpm, lzma
-Suggests: cabextract
+Suggests: cabextract, packagekit
 XB-Python-Version: ${python:Versions}
 Description: run programs by URL
  The Zero Install Injector makes it easy for users to install software without
