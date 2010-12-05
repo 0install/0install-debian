@@ -1,4 +1,9 @@
+zeroinstall-injector (0.51-1) unstable; urgency=low
+
+  * New upstream release.
   * Fixed typo in description. Closes: #604098
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 05 Dec 2010 20:05:47 +0000
 
 zeroinstall-injector (0.50-1) unstable; urgency=low
 
