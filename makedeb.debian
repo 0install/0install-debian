@@ -5,7 +5,7 @@ if [ "$1" = "" ]; then
 fi
 
 VERSION="$1"
-TMP_TAR="/tmp/zeroinstall-injector-$VERSION.tar.bz2"
+TMP_TAR="/home/tal/Out/zero-install/0launch/$VERSION/zeroinstall-injector-$VERSION.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
@@ -33,8 +33,9 @@ cp -r ../../debian .
 #cd "zeroinstall-injector-$VERSION" &&
  #patch -p1 < ../../report-error.patch
 # cp -r ../../debian .
-pdebuild
+#pdebuild
 #pdebuild --debsign-k Testing
+pdebuild --debsign-k 59A53CC1
 
 # echo Building binary...
 # cp -r "source-$VERSION" "binary-$VERSION"
@@ -49,12 +50,15 @@ pdebuild
 #   dpkg-buildpackage -S -sa -k59A53CC1 -rfakeroot
 # fi
 
+# TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="/var/cache/pbuilder/result/zeroinstall-injector_$VERSION-1_i386.changes"
+CHANGES="/var/cache/pbuilder/result/zeroinstall-injector_$VERSION-1_amd64.changes"
 lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
 echo Hint:
+echo debdiff ~/Out/zero-install/0launch/0.51/zeroinstall-injector_0.51-2_all.deb result/zeroinstall-injector_$VERSION-1_all.deb 
+
 echo dupload "$CHANGES"
