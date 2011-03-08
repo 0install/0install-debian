@@ -61,4 +61,4 @@ lintian -i "$CHANGES" || echo Lintian failed
 echo Hint:
 echo debdiff ~/Out/zero-install/0launch/0.51/zeroinstall-injector_0.51-2_all.deb result/zeroinstall-injector_$VERSION-1_all.deb 
 
-echo dupload "$CHANGES"
+echo dupload -t anonymous-ftp-master "$CHANGES"
