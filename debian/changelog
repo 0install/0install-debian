@@ -1,6 +1,15 @@
+zeroinstall-injector (0.53-1) unstable; urgency=low
+
+  * New upstream release.
   * Removed dependency on python-central. Closes: #617156
 
- -- Thomas Leonard <talex5@gmail.com>  Tue, 08 Mar 2011 19:52:50 +0000
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 13 Mar 2011 16:18:38 +0000
+
+zeroinstall-injector (0.52-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Thu, 20 Jan 2011 20:13:21 +0000
 
 zeroinstall-injector (0.51-2) unstable; urgency=low
 
