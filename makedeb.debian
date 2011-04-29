@@ -5,6 +5,7 @@ if [ "$1" = "" ]; then
 fi
 
 VERSION="$1"
+DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
 TMP_TAR="/home/tal/Out/zero-install/0launch/$VERSION/zeroinstall-injector-$VERSION.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
@@ -12,7 +13,7 @@ if [ ! -e "$TMP_TAR" ]; then
   exit 1
 fi
 
-orig="zeroinstall-injector_$VERSION.orig.tar.bz2"
+orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
 echo "Copying $TMP_TAR as build-$VERSION/$orig..."
 
@@ -26,7 +27,10 @@ cp "$TMP_TAR" "$BUILD_DIR/$orig"
 
 cd "$BUILD_DIR"
 tar xjf "$orig"
-cd "zeroinstall-injector-$VERSION"
+if [ "$VERSION" != "DEBIANVERSION" ]; then
+	mv "zeroinstall-injector-$VERSION" "zeroinstall-injector-$DEBIANVERSION"
+fi
+cd "zeroinstall-injector-$DEBIANVERSION"
 make share/locale/zero-install.pot	# So launchpad will translate it
 cp -r ../../debian .
 
@@ -52,13 +56,13 @@ pdebuild --debsign-k 59A53CC1
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="/var/cache/pbuilder/result/zeroinstall-injector_$VERSION-1_amd64.changes"
+CHANGES="/var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
 lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
 echo Hint:
-echo debdiff ~/Out/zero-install/0launch/0.51/zeroinstall-injector_0.51-2_all.deb result/zeroinstall-injector_$VERSION-1_all.deb 
+echo debdiff ~/Out/zero-install/0launch/0.53/zeroinstall-injector_0.53-1_all.deb /var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_all.deb 
 
 echo dupload -t anonymous-ftp-master "$CHANGES"
