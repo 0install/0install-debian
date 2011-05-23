@@ -27,7 +27,7 @@ cp "$TMP_TAR" "$BUILD_DIR/$orig"
 
 cd "$BUILD_DIR"
 tar xjf "$orig"
-if [ "$VERSION" != "DEBIANVERSION" ]; then
+if [ "$VERSION" != "$DEBIANVERSION" ]; then
 	mv "zeroinstall-injector-$VERSION" "zeroinstall-injector-$DEBIANVERSION"
 fi
 cd "zeroinstall-injector-$DEBIANVERSION"
