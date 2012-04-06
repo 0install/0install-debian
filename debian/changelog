@@ -1,3 +1,15 @@
+zeroinstall-injector (1.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 06 Apr 2012 11:43:23 +0100
+
+zeroinstall-injector (1.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 12 Feb 2012 15:19:54 +0000
+
 zeroinstall-injector (1.5-1) unstable; urgency=low
 
   * New upstream release.
