@@ -63,6 +63,6 @@ lintian -i "$CHANGES" || echo Lintian failed
 #echo dupload -t mentors *_source.changes
 
 echo Hint:
-echo debdiff /home/tal/Out/zero-install/0launch/1.0/zeroinstall-injector_1.0-1_all.deb /var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_all.deb 
+echo debdiff /home/tal/Out/zero-install/0launch/1.7/zeroinstall-injector_1.7-1_all.deb /var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_all.deb 
 
 echo dupload -t anonymous-ftp-master "$CHANGES"
