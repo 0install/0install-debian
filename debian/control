@@ -2,7 +2,7 @@ Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
-Build-Depends: debhelper (>= 5.0.37.2), python (>= 2.6), python-gobject (>= 2.12)
+Build-Depends: debhelper (>= 5.0.37.2), python (>= 2.6), python-gobject (>= 2.12), python3 (>= 3.2), python3-gi
 Standards-Version: 3.9.3
 Homepage: http://0install.net/
 X-Python-Version: >= 2.6
