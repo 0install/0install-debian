@@ -1,4 +1,4 @@
-Source: zeroinstall-injector
+Source: 0install
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
@@ -8,26 +8,45 @@ Homepage: http://0install.net/
 X-Python-Version: >= 2.6
 DM-Upload-Allowed: yes
 
-Package: zeroinstall-injector
+Package: 0install
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
+Depends: ${misc:Depends}, 0install-core (= ${source:Version}), python-gtk2 (>= 2.12)
+Description: cross-distribution packaging system
+ Zero Install is a decentralised cross-distribution software installation
+ system available under the LGPL. It allows software developers to publish
+ programs directly from their own web-sites, while supporting features familiar
+ from centralised distribution repositories such as shared libraries, automatic
+ updates and digital signatures. It is intended to complement, rather than
+ replace, the operating system's package management. 0install packages never
+ interfere with those provided by the distribution.
+ .
+ Note: If you have a headless system, install just the 0install-core package to
+ avoid pulling in any GUI dependencies.
+
+Package: 0install-core
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, gnupg, bzip2, binutils, adduser, python-gobject, xdg-utils
 Recommends: unzip, lzma, packagekit, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
-Description: run programs by URL
- The Zero Install Injector makes it easy for users to install software without
- needing root privileges. It takes the URL of a program and runs it
- (downloading it first if necessary). Any dependencies of the program are
- fetched in the same way. The user controls which version of the program and
- its dependencies to use.
+Provides: zeroinstall-injector
+Replaces: zeroinstall-injector (<< 1.10-2)
+Breaks: zeroinstall-injector (<< 1.10-2)
+Description: cross-distribution packaging system (non-GUI parts)
+ Zero Install is a decentralised cross-distribution software installation
+ system available under the LGPL. It allows software developers to publish
+ programs directly from their own web-sites, while supporting features familiar
+ from centralised distribution repositories such as shared libraries, automatic
+ updates and digital signatures. It is intended to complement, rather than
+ replace, the operating system's package management. 0install packages never
+ interfere with those provided by the distribution.
+
+Package: zeroinstall-injector
+Architecture: all
+Depends: ${misc:Depends}, 0install
+Description: transitional package for 0install
+ This is a transitional package for 0install, and can be safely removed
+ after the installation is complete.
  .
- Zero Install is a decentralised installation system (there is no central
- repository; all packages are identified by URLs), loosely-coupled (if different
- programs require different versions of a library then both versions are
- installed in parallel, without conflicts), and has an emphasis on security
- (all package descriptions are GPG-signed, and contain cryptographic hashes of
- the contents of each version). Each version of each program is stored in its
- own sub-directory within the Zero Install cache (nothing is installed to
- directories outside of the cache, such as /usr/bin) and no code from the
- package is run during install or uninstall. The system can automatically
- check for updates when software is run.
+ Note: If you have a headless system, install just the 0install-core package to
+ avoid pulling in any GUI dependencies.

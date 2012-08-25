@@ -6,6 +6,7 @@ clean:
 	rm -f build-stamp
 	rm -rf $(CURDIR)/build
 	rm -f $(CURDIR)/zeroinstall/__init__.pyc
+	rm -f $(CURDIR)/zeroinstall/__pycache__
 	dh_clean 
 
 build: build-indep
@@ -22,16 +23,16 @@ install: build-stamp
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
-	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
-	rm -r $(CURDIR)/debian/zeroinstall-injector/usr/man
+	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/0install-core
+	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/0install-core
+	rm -r $(CURDIR)/debian/0install-core/usr/man
 
 binary-indep: build-stamp install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs 
-	dh_installdocs
-	dh_installman 0launch.1 0alias.1 0store.1 0store-secure-add.1 0desktop.1 0install.1
+	dh_installchangelogs -p 0install-core
+	dh_installdocs --link-doc=0install-core
+	dh_installman
 	dh_compress
 	dh_fixperms
 	dh_python3
