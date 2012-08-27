@@ -20,7 +20,8 @@ Description: cross-distribution packaging system
  replace, the operating system's package management. 0install packages never
  interfere with those provided by the distribution.
  .
- Note: If you have a headless system, install just the 0install-core package to
+ This is a metapackage which installs 0install-core and the GUI libraries.
+ If you have a headless system, install just the 0install-core package to
  avoid pulling in any GUI dependencies.
 
 Package: 0install-core
@@ -30,8 +31,8 @@ Recommends: unzip, lzma, packagekit, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
 Provides: zeroinstall-injector
-Replaces: zeroinstall-injector (<< 1.10-2)
-Breaks: zeroinstall-injector (<< 1.10-2)
+Replaces: zeroinstall-injector (<< 1.11)
+Breaks: zeroinstall-injector (<< 1.11)
 Description: cross-distribution packaging system (non-GUI parts)
  Zero Install is a decentralised cross-distribution software installation
  system available under the LGPL. It allows software developers to publish
@@ -43,6 +44,7 @@ Description: cross-distribution packaging system (non-GUI parts)
 
 Package: zeroinstall-injector
 Architecture: all
+Section: oldlibs
 Depends: ${misc:Depends}, 0install
 Description: transitional package for 0install
  This is a transitional package for 0install, and can be safely removed
