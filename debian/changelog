@@ -1,10 +1,18 @@
-0install (1.11-1) unstable; urgency=low
+0install (1.12-2) unstable; urgency=low
 
-  * New upstream release.
   * Split into 0install and 0install-core packages, to avoid pulling in
     GUI dependencies on headless systems.
 
- -- Thomas Leonard <talex5@gmail.com>  Mon, 27 Aug 2012 11:08:40 +0100
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 29 Sep 2012 11:43:09 +0100
+
+zeroinstall-injector (1.12-1) unstable; urgency=low
+
+  * New upstream release.
+  * Note: Split packages (for headless servers) are available from:
+      https://launchpad.net/~tal-it-innovation/+archive/ppa
+    These improvements will be merged after Wheezy.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 29 Sep 2012 11:17:40 +0100
 
 zeroinstall-injector (1.10-1) unstable; urgency=low
 
