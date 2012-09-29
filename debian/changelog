@@ -1,3 +1,12 @@
+zeroinstall-injector (1.12-1) unstable; urgency=low
+
+  * New upstream release.
+  * Note: Split packages (for headless servers) are available from:
+      https://launchpad.net/~tal-it-innovation/+archive/ppa
+    These improvements will be merged after Wheezy.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 29 Sep 2012 11:17:40 +0100
+
 zeroinstall-injector (1.10-1) unstable; urgency=low
 
   * New upstream release.

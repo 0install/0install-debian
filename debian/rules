@@ -6,6 +6,7 @@ clean:
 	rm -f build-stamp
 	rm -rf $(CURDIR)/build
 	rm -f $(CURDIR)/zeroinstall/__init__.pyc
+	rm -f $(CURDIR)/zeroinstall/__pycache__
 	dh_clean 
 
 build: build-indep
@@ -20,7 +21,7 @@ build-stamp:
 install: build-stamp
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
+	dh_prep
 	dh_installdirs
 	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
 	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector

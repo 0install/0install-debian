@@ -6,7 +6,7 @@ fi
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-TMP_TAR="/home/tal/Out/zero-install/0launch/$VERSION/zeroinstall-injector-$VERSION.tar.bz2"
+TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
@@ -28,9 +28,9 @@ cp "$TMP_TAR" "$BUILD_DIR/$orig"
 cd "$BUILD_DIR"
 tar xjf "$orig"
 if [ "$VERSION" != "$DEBIANVERSION" ]; then
-	mv "zeroinstall-injector-$VERSION" "zeroinstall-injector-$DEBIANVERSION"
+	mv "0install-$VERSION" "0install-$DEBIANVERSION"
 fi
-cd "zeroinstall-injector-$DEBIANVERSION"
+cd "0install-$DEBIANVERSION"
 make share/locale/zero-install.pot	# So launchpad will translate it
 cp -r ../../debian .
 
