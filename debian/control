@@ -31,8 +31,8 @@ Recommends: unzip, lzma, packagekit, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
 Provides: zeroinstall-injector
-Replaces: zeroinstall-injector (<< 1.12-1)
-Breaks: zeroinstall-injector (<< 1.12-1)
+Replaces: zeroinstall-injector (<< 1.13-1)
+Breaks: zeroinstall-injector (<< 1.13-1)
 Description: cross-distribution packaging system (non-GUI parts)
  Zero Install is a decentralised cross-distribution software installation
  system available under the LGPL. It allows software developers to publish
