@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -eu
 if [ "$1" = "" ]; then
   echo Usage: makedeb VERSION
   exit 1
@@ -15,36 +16,30 @@ fi
 
 orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
-echo "Copying $TMP_TAR as build-$VERSION/$orig..."
-
-BUILD_DIR="build-$VERSION"
-rm -rf "build-$VERSION"
+BUILD_DIR="/home/vagrant/build-$VERSION"
+rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
+
+echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+
 cp "$TMP_TAR" "$BUILD_DIR/$orig"
-# See http://doc.ubuntu.com/ubuntu/packagingguide/C/basic-mistakes.html
-#(cd build-$VERSION && bunzip2 "$orig.bz2" && gzip -9 "$orig")
-# (no longer needed with Debian 3.0 format)
 
 cd "$BUILD_DIR"
 tar xjf "$orig"
 if [ "$VERSION" != "$DEBIANVERSION" ]; then
-	mv "0install-$VERSION" "0install-$DEBIANVERSION"
+	mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
 fi
 cd "0install-$DEBIANVERSION"
-make share/locale/zero-install.pot	# So launchpad will translate it
-cp -r ../../debian .
+#make share/locale/zero-install.pot	# So launchpad will translate it
+cp -r /vagrant/debian .
 
-#cd "zeroinstall-injector-$VERSION" &&
- #patch -p1 < ../../report-error.patch
-# cp -r ../../debian .
 #pdebuild
 #pdebuild --debsign-k Testing
-pdebuild --debsign-k 59A53CC1
+#pdebuild --debsign-k 59A53CC1
 
-# echo Building binary...
-# cp -r "source-$VERSION" "binary-$VERSION"
-# (cd "binary-$VERSION/zeroinstall-injector-$VERSION" &&
-#  dpkg-buildpackage -kTesting -rfakeroot)
+echo Building binary...
+#cp -r "source-$VERSION" "binary-$VERSION"
+dpkg-buildpackage -k59A53CC1 -rfakeroot
 # 
 # echo Building source...
 # cd "source-$VERSION/zeroinstall-injector-$VERSION"
@@ -56,13 +51,17 @@ pdebuild --debsign-k 59A53CC1
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="/var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
+CHANGES="$BUILD_DIR/zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
 lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
+DEB=zeroinstall-injector_$DEBIANVERSION-1_all.deb
+cp $BUILD_DIR/$DEB /vagrant/
+
 echo Hint:
-echo debdiff /home/tal/Out/zero-install/0install/1.14/zeroinstall-injector_1.14-1_all.deb /var/cache/pbuilder/result/zeroinstall-injector_$DEBIANVERSION-1_all.deb
+echo debdiff /home/tal/Out/zero-install/0install/1.14/zeroinstall-injector_1.14-1_all.deb $DEB
+echo sudo dpkg -i $DEB
 
 echo dupload -t anonymous-ftp-master "$CHANGES"
