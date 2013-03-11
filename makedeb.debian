@@ -64,4 +64,4 @@ echo Hint:
 echo debdiff /home/tal/Out/zero-install/0install/1.14/zeroinstall-injector_1.14-1_all.deb $DEB
 echo sudo dpkg -i $DEB
 
-echo dupload -t anonymous-ftp-master "$CHANGES"
+echo dput "$CHANGES"
