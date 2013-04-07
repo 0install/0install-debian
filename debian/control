@@ -11,7 +11,7 @@ DM-Upload-Allowed: yes
 Package: zeroinstall-injector
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
-Recommends: unzip, lzma, packagekit, ca-certificates
+Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
 Description: cross-distribution packaging system
