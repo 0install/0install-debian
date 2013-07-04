@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+OCAMLABI := $(shell ocamlc -version)
+
 clean:
 	dh_testdir
 	dh_testroot
@@ -15,7 +17,7 @@ build-arch:
 
 build-stamp:
 	dh_testdir
-	python $(CURDIR)/setup.py build
+	make -C $(CURDIR) ocaml TYPE=byte
 	touch $@
 
 install: build-stamp
@@ -37,6 +39,7 @@ binary-indep: build-stamp install
 	dh_fixperms
 	dh_python3
 	dh_python2
+	dh_ocaml
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums

@@ -2,7 +2,7 @@ Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
-Build-Depends: debhelper (>= 7), python (>= 2.6), python-gobject (>= 2.12), python3 (>= 3.2), python3-gi
+Build-Depends: debhelper (>= 7), python (>= 2.6), python-gobject (>= 2.12), python3 (>= 3.2), python3-gi, ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra
 Standards-Version: 3.9.3
 Homepage: http://0install.net/
 X-Python-Version: >= 2.6
@@ -10,7 +10,7 @@ DM-Upload-Allowed: yes
 
 Package: zeroinstall-injector
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils
+Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils, ${ocaml:Depends}
 Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
