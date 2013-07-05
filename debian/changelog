@@ -1,3 +1,10 @@
+zeroinstall-injector (2.3-2) unstable; urgency=low
+
+  * Changed to "Architecture: any" as dependencies vary across
+    architectures. Closes: #714996
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 05 Jul 2013 10:31:27 +0000
+
 zeroinstall-injector (2.3-1) unstable; urgency=low
 
   * New upstream release. Closes: #709485

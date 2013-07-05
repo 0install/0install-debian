@@ -40,6 +40,7 @@ cp -r /vagrant/debian .
 echo Building binary...
 #cp -r "source-$VERSION" "binary-$VERSION"
 dpkg-buildpackage -k59A53CC1 -rfakeroot
+#dpkg-buildpackage -kTesting -rfakeroot
 # 
 # echo Building source...
 # cd "source-$VERSION/zeroinstall-injector-$VERSION"
@@ -57,11 +58,11 @@ lintian -i "$CHANGES" || echo Lintian failed
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-DEB=zeroinstall-injector_$DEBIANVERSION-1_all.deb
+DEB=zeroinstall-injector_$DEBIANVERSION-1_amd64.deb
 cp $BUILD_DIR/$DEB /vagrant/
 
 echo Hint:
-echo debdiff /home/tal/Out/zero-install/0install/1.14/zeroinstall-injector_1.14-1_all.deb $DEB
+echo debdiff /home/tal/Out/zero-install/0install/2.3/zeroinstall-injector_2.3-1_all.deb $DEB
 echo sudo dpkg -i $DEB
 
 echo dput "$CHANGES"

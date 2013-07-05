@@ -17,7 +17,11 @@ build-arch:
 
 build-stamp:
 	dh_testdir
-	make -C $(CURDIR) ocaml TYPE=byte
+	if [ -x /usr/bin/ocamlopt ]; then \
+		make -C $(CURDIR) ocaml TYPE=native; \
+	else \
+		make -C $(CURDIR) ocaml TYPE=byte; \
+	fi
 	touch $@
 
 install: build-stamp
@@ -28,6 +32,9 @@ install: build-stamp
 	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
 	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/zeroinstall-injector
 	rm -r $(CURDIR)/debian/zeroinstall-injector/usr/man
+	if [ -x /usr/bin/ocamlopt ]; then \
+		dh_strip; dh_shlibdeps; \
+	fi
 
 binary-indep: build-stamp install
 	dh_testdir

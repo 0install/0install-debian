@@ -9,8 +9,8 @@ X-Python-Version: >= 2.6
 DM-Upload-Allowed: yes
 
 Package: zeroinstall-injector
-Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils, ${ocaml:Depends}
+Architecture: any
+Depends: ${misc:Depends}, ${python:Depends}, gnupg, python-gtk2 (>= 2.12), bzip2, binutils, adduser, xdg-utils, ${ocaml:Depends}, ${shlibs:Depends}
 Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat, ca-certificates
 Suggests: cabextract, rpm2cpio
 XB-Python-Version: ${python:Versions}
