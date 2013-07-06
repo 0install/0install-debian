@@ -1,3 +1,10 @@
+zeroinstall-injector (2.3-3) unstable; urgency=low
+
+  * Moved binary-indep rules to binary-arch, as binary is now
+    arch-specific. Closes: #714996
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 06 Jul 2013 07:24:51 +0000
+
 zeroinstall-injector (2.3-2) unstable; urgency=low
 
   * Changed to "Architecture: any" as dependencies vary across

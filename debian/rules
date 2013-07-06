@@ -11,9 +11,9 @@ clean:
 	rm -f $(CURDIR)/zeroinstall/__pycache__
 	dh_clean 
 
-build: build-indep
-build-indep: build-stamp
-build-arch:
+build: build-arch
+build-indep:
+build-arch: build-stamp
 
 build-stamp:
 	dh_testdir
@@ -36,7 +36,7 @@ install: build-stamp
 		dh_strip; dh_shlibdeps; \
 	fi
 
-binary-indep: build-stamp install
+binary-arch: build-stamp install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs 
@@ -52,7 +52,7 @@ binary-indep: build-stamp install
 	dh_md5sums
 	dh_builddeb
 
-binary-arch: build install
+binary-indep: build-stamp install
 # We have nothing to do by default.
 
 binary: binary-indep binary-arch
