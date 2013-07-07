@@ -6,7 +6,6 @@ Build-Depends: debhelper (>= 7), python (>= 2.6), python-gobject (>= 2.12), pyth
 Standards-Version: 3.9.3
 Homepage: http://0install.net/
 X-Python-Version: >= 2.6
-DM-Upload-Allowed: yes
 
 Package: zeroinstall-injector
 Architecture: any
