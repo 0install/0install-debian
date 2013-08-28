@@ -3,9 +3,11 @@ Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 7), python (>= 2.6), python-gobject (>= 2.12), python3 (>= 3.2), python3-gi, ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Homepage: http://0install.net/
 X-Python-Version: >= 2.6
+Vcs-Browser: https://github.com/0install/0install-debian
+Vcs-Git: https://github.com/0install/0install-debian.git
 
 Package: zeroinstall-injector
 Architecture: any

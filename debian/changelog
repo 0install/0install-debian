@@ -1,3 +1,21 @@
+zeroinstall-injector (2.3.3-1) unstable; urgency=low
+
+  * New (bugfix only) upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 28 Aug 2013 09:08:58 +0000
+
+zeroinstall-injector (2.3.2-1) unstable; urgency=low
+
+  * New (bugfix) upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 21 Jul 2013 17:24:43 +0000
+
+zeroinstall-injector (2.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 10 Jul 2013 08:19:04 +0000
+
 zeroinstall-injector (2.3-3) unstable; urgency=low
 
   * Moved binary-indep rules to binary-arch, as binary is now
