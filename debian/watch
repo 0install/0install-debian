@@ -1,2 +1,2 @@
 version=3
-http://sf.net/zero-install/0install-(.+)\.tar\.bz2
+http://sf.net/zero-install/0install-(\d.+)\.tar\.bz2
