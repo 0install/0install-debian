@@ -37,18 +37,16 @@ cp -r /vagrant/debian .
 #pdebuild --debsign-k Testing
 #pdebuild --debsign-k 59A53CC1
 
-echo Building binary...
-#cp -r "source-$VERSION" "binary-$VERSION"
-dpkg-buildpackage -k59A53CC1 -rfakeroot
+#echo Building binary...
+#dpkg-buildpackage -k59A53CC1 -rfakeroot
 #dpkg-buildpackage -kTesting -rfakeroot
 # 
-# echo Building source...
-# cd "source-$VERSION/zeroinstall-injector-$VERSION"
-# if [ "$2" = "--test" ]; then
-#   dpkg-buildpackage -S -sa -kTesting -rfakeroot
-# else
-#   dpkg-buildpackage -S -sa -k59A53CC1 -rfakeroot
-# fi
+echo Building source...
+if [ "$2" = "--test" ]; then
+  dpkg-buildpackage -S -sa -kTesting -rfakeroot
+else
+  dpkg-buildpackage -S -sa -k59A53CC1 -rfakeroot
+fi
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
