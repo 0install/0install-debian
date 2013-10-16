@@ -1,9 +1,84 @@
-0install (1.13-2) unstable; urgency=low
+0install (2.3.3-2) unstable; urgency=low
 
   * Split into 0install and 0install-core packages, to avoid pulling in
     GUI dependencies on headless systems.
 
- -- Thomas Leonard <talex5@gmail.com>  Sat, 29 Sep 2012 11:43:09 +0100
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 16 Oct 2013 10:36:49 +0000
+
+zeroinstall-injector (2.3.3-1) unstable; urgency=low
+
+  * New (bugfix only) upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 28 Aug 2013 09:08:58 +0000
+
+zeroinstall-injector (2.3.2-1) unstable; urgency=low
+
+  * New (bugfix) upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 21 Jul 2013 17:24:43 +0000
+
+zeroinstall-injector (2.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 10 Jul 2013 08:19:04 +0000
+
+zeroinstall-injector (2.3-3) unstable; urgency=low
+
+  * Moved binary-indep rules to binary-arch, as binary is now
+    arch-specific. Closes: #714996
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 06 Jul 2013 07:24:51 +0000
+
+zeroinstall-injector (2.3-2) unstable; urgency=low
+
+  * Changed to "Architecture: any" as dependencies vary across
+    architectures. Closes: #714996
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 05 Jul 2013 10:31:27 +0000
+
+zeroinstall-injector (2.3-1) unstable; urgency=low
+
+  * New upstream release. Closes: #709485
+  * Now uses OCaml front-end for better performance.
+
+ -- Thomas Leonard <talex5@gmail.com>  Thu, 04 Jul 2013 09:38:40 +0000
+
+zeroinstall-injector (2.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 03 May 2013 13:36:55 +0000
+
+zeroinstall-injector (2.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Thu, 04 Apr 2013 17:22:23 +0000
+
+zeroinstall-injector (2.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 06 Mar 2013 14:10:55 +0000
+
+zeroinstall-injector (1.16-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 24 Feb 2013 15:29:19 +0000
+
+zeroinstall-injector (1.15-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 13 Feb 2013 10:17:05 +0000
+
+zeroinstall-injector (1.14-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Mon, 14 Jan 2013 14:36:23 +0000
 
 zeroinstall-injector (1.13-1) unstable; urgency=low
 

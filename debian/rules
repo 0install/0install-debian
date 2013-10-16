@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+OCAMLABI := $(shell ocamlc -version)
+
 clean:
 	dh_testdir
 	dh_testroot
@@ -9,13 +11,17 @@ clean:
 	rm -f $(CURDIR)/zeroinstall/__pycache__
 	dh_clean 
 
-build: build-indep
-build-indep: build-stamp
-build-arch:
+build: build-arch
+build-indep:
+build-arch: build-stamp
 
 build-stamp:
 	dh_testdir
-	python $(CURDIR)/setup.py build
+	if [ -x /usr/bin/ocamlopt ]; then \
+		make -C $(CURDIR) ocaml TYPE=native; \
+	else \
+		make -C $(CURDIR) ocaml TYPE=byte; \
+	fi
 	touch $@
 
 install: build-stamp
@@ -26,8 +32,11 @@ install: build-stamp
 	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/0install-core
 	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/0install-core
 	rm -r $(CURDIR)/debian/0install-core/usr/man
+	if [ -x /usr/bin/ocamlopt ]; then \
+		dh_strip; dh_shlibdeps; \
+	fi
 
-binary-indep: build-stamp install
+binary-arch: build-stamp install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs -p 0install-core
@@ -37,12 +46,13 @@ binary-indep: build-stamp install
 	dh_fixperms
 	dh_python3
 	dh_python2
+	dh_ocaml
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
 
-binary-arch: build install
+binary-indep: build-stamp install
 # We have nothing to do by default.
 
 binary: binary-indep binary-arch
