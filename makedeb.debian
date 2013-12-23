@@ -14,7 +14,7 @@ if [ ! -e "$TMP_TAR" ]; then
   exit 1
 fi
 
-orig="0install_$DEBIANVERSION.orig.tar.bz2"
+orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
 BUILD_DIR="/home/vagrant/build-$VERSION"
 rm -rf "$BUILD_DIR"

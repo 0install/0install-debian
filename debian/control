@@ -1,4 +1,4 @@
-Source: 0install
+Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
