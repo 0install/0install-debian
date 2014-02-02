@@ -7,8 +7,6 @@ clean:
 	dh_testroot
 	rm -f build-stamp
 	rm -rf $(CURDIR)/build
-	rm -f $(CURDIR)/zeroinstall/__init__.pyc
-	rm -f $(CURDIR)/zeroinstall/__pycache__
 	dh_clean 
 
 build: build-arch
@@ -18,9 +16,9 @@ build-arch: build-stamp
 build-stamp:
 	dh_testdir
 	if [ -x /usr/bin/ocamlopt ]; then \
-		make -C $(CURDIR) ocaml TYPE=native; \
+		make -C $(CURDIR) TYPE=native; \
 	else \
-		make -C $(CURDIR) ocaml TYPE=byte; \
+		make -C $(CURDIR) TYPE=byte; \
 	fi
 	touch $@
 
@@ -29,9 +27,11 @@ install: build-stamp
 	dh_testroot
 	dh_prep
 	dh_installdirs
-	python3 $(CURDIR)/setup.py install --install-layout=deb --root=$(CURDIR)/debian/0install-core
-	python $(CURDIR)/setup.py install --force --install-layout=deb --root=$(CURDIR)/debian/0install-core
-	rm -r $(CURDIR)/debian/0install-core/usr/man
+	$(CURDIR)/dist/install.sh $(CURDIR)/debian/0install-core/usr
+	mkdir -p $(CURDIR)/debian/0install/usr/lib/0install.net
+	mv $(CURDIR)/debian/0install-core/usr/lib/0install.net/gui_gtk.* $(CURDIR)/debian/0install/usr/lib/0install.net/
+	mv $(CURDIR)/debian/0install-core/usr/share/zsh/site-functions $(CURDIR)/debian/0install-core/usr/share/zsh/vendor-completions
+	rm -r $(CURDIR)/debian/0install-core/usr/share/doc/0install
 	if [ -x /usr/bin/ocamlopt ]; then \
 		dh_strip; dh_shlibdeps; \
 	fi
@@ -44,9 +44,7 @@ binary-arch: build-stamp install
 	dh_installman
 	dh_compress
 	dh_fixperms
-	dh_python3
-	dh_python2
-	dh_ocaml
+	#dh_ocaml		(not for -custom bytecode)
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums

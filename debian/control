@@ -2,16 +2,15 @@ Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
-Build-Depends: debhelper (>= 7), python (>= 2.6), python-gobject (>= 2.12), python3 (>= 3.2), python3-gi, ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra
+Build-Depends: debhelper (>= 9), ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra, gettext, liblwt-ocaml-dev, libounit-ocaml-dev, libextlib-ocaml-dev, libcurl-ocaml-dev, libssl-ocaml-dev, libobus-ocaml-dev, liblablgtk2-ocaml-dev, liblwt-glib-ocaml-dev
 Standards-Version: 3.9.5
 Homepage: http://0install.net/
-X-Python-Version: >= 2.6
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git
 
 Package: 0install
-Architecture: all
-Depends: ${misc:Depends}, 0install-core (>= ${source:Version}), python-gtk2 (>= 2.12)
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, 0install-core (>= ${source:Version}), libgtk2.0-0
 Description: cross-distribution packaging system
  Zero Install is a decentralised cross-distribution software installation
  system available under the LGPL. It allows software developers to publish
@@ -21,16 +20,15 @@ Description: cross-distribution packaging system
  replace, the operating system's package management. 0install packages never
  interfere with those provided by the distribution.
  .
- This is a metapackage which installs 0install-core and the GUI libraries.
- If you have a headless system, install just the 0install-core package to
- avoid pulling in any GUI dependencies.
+ This package includes the GTK GUI for 0install. If you have a headless system,
+ install just the 0install-core package to avoid pulling in any GUI
+ dependencies.
 
 Package: 0install-core
 Architecture: any
-Depends: ${misc:Depends}, ${python:Depends}, gnupg, bzip2, binutils, adduser, python-gobject, xdg-utils, ${ocaml:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, gnupg, bzip2, binutils, adduser, xdg-utils, ${shlibs:Depends}
 Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat, ca-certificates
 Suggests: cabextract, rpm2cpio, 0install
-XB-Python-Version: ${python:Versions}
 Provides: zeroinstall-injector
 Replaces: zeroinstall-injector (<< 2.3.3-2)
 Breaks: zeroinstall-injector (<< 2.3.3-2)
@@ -46,7 +44,7 @@ Description: cross-distribution packaging system (non-GUI parts)
 Package: zeroinstall-injector
 Architecture: all
 Section: oldlibs
-Depends: ${misc:Depends}, 0install
+Depends: ${misc:Depends}, 0install, 0install-core
 Description: transitional package for 0install
  This is a transitional package for 0install, and can be safely removed
  after the installation is complete.

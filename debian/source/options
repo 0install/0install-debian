@@ -1,1 +1,1 @@
-extend-diff-ignore = ".pot$|.ui.h$"
+extend-diff-ignore = ".pot$"

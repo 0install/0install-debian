@@ -52,14 +52,15 @@ dpkg-buildpackage -k59A53CC1 -rfakeroot
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="$BUILD_DIR/0install_$DEBIANVERSION-1_amd64.changes"
+CHANGES="$BUILD_DIR/zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
 lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-DEB=0install_$DEBIANVERSION-1_amd64.deb
+DEB=0install-core_$DEBIANVERSION-1_amd64.deb
 cp $BUILD_DIR/$DEB /vagrant/
+cp $BUILD_DIR/0install_$DEBIANVERSION-1_amd64.deb /vagrant/
 
 echo Hint:
 echo debdiff 0install-core-1_amd64.deb $DEB
