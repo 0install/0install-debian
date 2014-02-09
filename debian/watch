@@ -1,2 +1,2 @@
 version=3
-http://sf.net/zero-install/0install-(\d.+)\.tar\.bz2
+opts="pgpsigurlmangle=s/$/.sig/" http://sf.net/zero-install/0install-(\d.+)\.tar\.bz2
