@@ -16,30 +16,36 @@ fi
 
 orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
-BUILD_DIR="/home/vagrant/build-$VERSION"
-rm -rf "$BUILD_DIR"
-mkdir -p "$BUILD_DIR"
+BUILD_DIR="build-$VERSION"
+if true; then
+	rm -rf "$BUILD_DIR"
+	mkdir -p "$BUILD_DIR"
 
-echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
 
-cp "$TMP_TAR" "$BUILD_DIR/$orig"
+	cp "$TMP_TAR" "$BUILD_DIR/$orig"
 
-cd "$BUILD_DIR"
-tar xjf "$orig"
-if [ "$VERSION" != "$DEBIANVERSION" ]; then
-	mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
+	cd "$BUILD_DIR"
+	tar xjf "$orig"
+	if [ "$VERSION" != "$DEBIANVERSION" ]; then
+		mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
+	fi
+	#cd "0install-$DEBIANVERSION"
+	cp -r ../debian 0install-$DEBIANVERSION/
+	cd ..
+
+	#make share/locale/zero-install.pot	# So launchpad will translate it
+
+	#pdebuild
+	#pdebuild --debsign-k Testing
+	#pdebuild --debsign-k 59A53CC1
+
+	echo Building binary...
+	docker run -v `pwd`:/mnt -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k59A53CC1 -rfakeroot
 fi
-cd "0install-$DEBIANVERSION"
-#make share/locale/zero-install.pot	# So launchpad will translate it
-cp -r /vagrant/debian .
 
-#pdebuild
-#pdebuild --debsign-k Testing
-#pdebuild --debsign-k 59A53CC1
-
-echo Building binary...
 #cp -r "source-$VERSION" "binary-$VERSION"
-dpkg-buildpackage -k59A53CC1 -rfakeroot
+
 #dpkg-buildpackage -kTesting -rfakeroot
 # 
 # echo Building source...
@@ -52,18 +58,22 @@ dpkg-buildpackage -k59A53CC1 -rfakeroot
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="$BUILD_DIR/zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
-lintian -i "$CHANGES" || echo Lintian failed
+CHANGES="zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
+docker run -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-DEB=0install-core_$DEBIANVERSION-1_amd64.deb
-cp $BUILD_DIR/$DEB /vagrant/
-cp $BUILD_DIR/0install_$DEBIANVERSION-1_amd64.deb /vagrant/
+OLD_VERSION=2.6.1
 
-echo Hint:
-echo debdiff 0install-core-1_amd64.deb $DEB
-echo sudo dpkg -i $DEB
+# deb-diff
+docker run -v `pwd`:/mnt talex5/deb-builder debdiff build-$OLD_VERSION/0install-core_$OLD_VERSION-1_amd64.deb $BUILD_DIR/0install-core_$DEBIANVERSION-1_amd64.deb || echo Changes
+docker run -v `pwd`:/mnt talex5/deb-builder debdiff build-$OLD_VERSION/0install_$OLD_VERSION-1_amd64.deb $BUILD_DIR/0install_$DEBIANVERSION-1_amd64.deb || echo Changes
 
+echo "Testing... (hint: dpkg -i *.deb)"
+
+docker run -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder
+DEB=$BUILD_DIR/0install-core_$DEBIANVERSION-1_amd64.deb
+
+echo ./enter.sh
 echo dput "$CHANGES"
