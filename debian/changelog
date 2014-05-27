@@ -1,3 +1,9 @@
+zeroinstall-injector (2.7-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Tue, 27 May 2014 10:53:31 +0000
+
 zeroinstall-injector (2.6.1-1) unstable; urgency=medium
 
   * New upstream release. The Python dependency is now gone.
