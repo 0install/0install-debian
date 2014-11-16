@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+dpkg-maintscript-helper rm_conffile \
+       /etc/xdg/menus/applications-merged/zeroinstall.menu 2.7-2~ zeroinstall-injector -- "$@"
+
+dpkg-maintscript-helper dir_to_symlink \
+       /usr/share/doc/zeroinstall-injector /usr/share/doc/0install-core 2.7-2~ zeroinstall-injector -- "$@"
+
+#DEBHELPER#

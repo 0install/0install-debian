@@ -1,3 +1,10 @@
+zeroinstall-injector (2.7-2) unstable; urgency=medium
+
+  * Remove old conffile and directory when upgrading from the old
+    zeroinstall-injector package. Closes: #768237
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 16 Nov 2014 12:47:35 +0000
+
 zeroinstall-injector (2.7-1) unstable; urgency=medium
 
   * New upstream release.

@@ -58,13 +58,13 @@ fi
 
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
-CHANGES="zeroinstall-injector_$DEBIANVERSION-1_amd64.changes"
+CHANGES="zeroinstall-injector_$DEBIANVERSION-2_amd64.changes"
 docker run -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-OLD_VERSION=2.6.1
+OLD_VERSION=2.7
 
 # deb-diff
 docker run -v `pwd`:/mnt talex5/deb-builder debdiff build-$OLD_VERSION/0install-core_$OLD_VERSION-1_amd64.deb $BUILD_DIR/0install-core_$DEBIANVERSION-1_amd64.deb || echo Changes
