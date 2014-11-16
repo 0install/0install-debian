@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y devscripts fakeroot quilt 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dh-ocaml
 
 # Run-time utilities (needed for testing)
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils python-gobject-2
 
 RUN useradd -U -u 1000 -m tal
 
