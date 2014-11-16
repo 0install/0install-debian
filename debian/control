@@ -3,7 +3,7 @@ Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: debhelper (>= 9), ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra, gettext, liblwt-ocaml-dev, libounit-ocaml-dev, libextlib-ocaml-dev, libcurl-ocaml-dev, libssl-ocaml-dev, libobus-ocaml-dev, liblablgtk2-ocaml-dev, liblwt-glib-ocaml-dev, unzip
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git
@@ -44,6 +44,7 @@ Description: cross-distribution packaging system (non-GUI parts)
 Package: zeroinstall-injector
 Architecture: all
 Section: oldlibs
+Pre-Depends: dpkg (>= 1.17.5)
 Depends: ${misc:Depends}, 0install, 0install-core
 Description: transitional package for 0install
  This is a transitional package for 0install, and can be safely removed
