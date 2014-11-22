@@ -2,7 +2,7 @@ Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
-Build-Depends: debhelper (>= 9), ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra, gettext, liblwt-ocaml-dev, libounit-ocaml-dev, libextlib-ocaml-dev, libcurl-ocaml-dev, libssl-ocaml-dev, libobus-ocaml-dev, liblablgtk2-ocaml-dev, liblwt-glib-ocaml-dev, unzip
+Build-Depends: debhelper (>= 9), ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra, gettext, liblwt-ocaml-dev, libounit-ocaml-dev, libextlib-ocaml-dev, libcurl-ocaml-dev, libssl-ocaml-dev, libobus-ocaml-dev, liblablgtk2-ocaml-dev, liblwt-glib-ocaml-dev, unzip, binutils
 Standards-Version: 3.9.6
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
@@ -26,7 +26,7 @@ Description: cross-distribution packaging system
 
 Package: 0install-core
 Architecture: any
-Depends: ${misc:Depends}, gnupg, bzip2, binutils, adduser, xdg-utils, ca-certificates, ${shlibs:Depends}
+Depends: ${misc:Depends}, gnupg, bzip2, adduser, xdg-utils, ca-certificates, ${shlibs:Depends}
 Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat
 Suggests: cabextract, rpm2cpio, 0install
 Provides: zeroinstall-injector
