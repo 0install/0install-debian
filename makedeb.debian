@@ -65,12 +65,14 @@ docker run -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$C
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-OLD_0INSTALL=0install_2.6.1-1_amd64.deb
-OLD_CORE=0install-core_2.6.1-1_amd64.deb
+OLD_0INSTALL=build-2.8.old/0install_2.8-1_amd64.deb
+OLD_CORE=build-2.8.old/0install-core_2.8-1_amd64.deb
+OLD_ZERO=build-2.8.old/zeroinstall-injector_2.8-1_all.deb
 
 # deb-diff
 docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
 docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_0INSTALL $BUILD_DIR/0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
+docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_ZERO $BUILD_DIR/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_all.deb || echo Changes
 
 echo "Testing... press RETURN"
 read

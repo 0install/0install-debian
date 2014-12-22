@@ -42,18 +42,25 @@ binary-arch: build-stamp install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs -p 0install-core
-	dh_installdocs --link-doc=0install-core
-	dh_installman
-	dh_compress
-	dh_fixperms
+	dh_installdocs -a --link-doc=0install-core
+	dh_installman -a
+	dh_compress -a
+	dh_fixperms -a
 	#dh_ocaml		(not for -custom bytecode)
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh_installdeb -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
 
-binary-indep: build-stamp install
-# We have nothing to do by default.
+binary-indep:
+	dh_testdir
+	dh_testroot
+	dh_installdocs -i --link-doc=0install-core
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
 
 binary: binary-indep binary-arch
 

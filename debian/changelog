@@ -2,6 +2,7 @@ zeroinstall-injector (2.8-1) unstable; urgency=medium
 
   * New upstream release. Closes: #763809.
   * Made binutils only a Build-Depends.
+  * Fixed E-binary-arch-produces-all build warning.
 
  -- Thomas Leonard <talex5@gmail.com>  Sat, 22 Nov 2014 13:26:05 +0000
 
