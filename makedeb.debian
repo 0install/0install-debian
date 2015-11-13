@@ -42,7 +42,7 @@ if true; then
 	#pdebuild --debsign-k 59A53CC1
 
 	echo Building binary...
-	docker run -u tal -v `pwd`:/mnt -v ${HOME}/.gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k59A53CC1 -rfakeroot
+	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k59A53CC1 -rfakeroot
 fi
 
 #cp -r "source-$VERSION" "binary-$VERSION"
@@ -60,26 +60,26 @@ fi
 # TODO: use pdebuild to run lintian?
 echo Running lintian...
 CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
-docker run -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
+docker run --rm -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
 
 #echo cd "build-$VERSION"
 #echo dupload -t mentors *_source.changes
 
-OLD_0INSTALL=build-2.8.old/0install_2.8-1_amd64.deb
-OLD_CORE=build-2.8.old/0install-core_2.8-1_amd64.deb
-OLD_ZERO=build-2.8.old/zeroinstall-injector_2.8-1_all.deb
+OLD_0INSTALL=build-2.8/0install_2.8-1_amd64.deb
+OLD_CORE=build-2.8/0install-core_2.8-1_amd64.deb
+OLD_ZERO=build-2.8/zeroinstall-injector_2.8-1_all.deb
 
 # deb-diff
-docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
-docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_0INSTALL $BUILD_DIR/0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
-docker run -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_ZERO $BUILD_DIR/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_all.deb || echo Changes
+docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
+docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_0INSTALL $BUILD_DIR/0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
+docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_ZERO $BUILD_DIR/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_all.deb || echo Changes
 
 echo "Testing... press RETURN"
 read
 
 cp test-script $BUILD_DIR
 mkdir $BUILD_DIR/gnupg
-docker run -u tal -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
+docker run --rm -u tal -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
 DEB=$BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb
 
-echo docker run -u tal -v `pwd`:/mnt -v ${HOME}/.gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
+echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
