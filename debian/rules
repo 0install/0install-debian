@@ -29,7 +29,9 @@ install: build-stamp
 	dh_installdirs
 	$(CURDIR)/dist/install.sh $(CURDIR)/debian/0install-core/usr
 	mkdir -p $(CURDIR)/debian/0install/usr/lib/0install.net
+	mkdir -p $(CURDIR)/debian/0install/usr/share/applications
 	mv $(CURDIR)/debian/0install-core/usr/lib/0install.net/gui_gtk.* $(CURDIR)/debian/0install/usr/lib/0install.net/
+	mv $(CURDIR)/debian/0install-core/usr/share/applications/0install.desktop $(CURDIR)/debian/0install/usr/share/applications/
 	rmdir $(CURDIR)/debian/0install-core/usr/lib/0install.net
 	rmdir $(CURDIR)/debian/0install-core/usr/lib
 	mv $(CURDIR)/debian/0install-core/usr/share/zsh/site-functions $(CURDIR)/debian/0install-core/usr/share/zsh/vendor-completions

@@ -1,3 +1,11 @@
+zeroinstall-injector (2.10-1) unstable; urgency=medium
+
+  * New upstream release. Closes: #804431 (build failure).
+  * Moved .desktop file from 0install-core to 0install, as it requires
+    the GUI.
+
+ -- Thomas Leonard <talex5@gmail.com>  Fri, 13 Nov 2015 09:45:10 +0000
+
 zeroinstall-injector (2.8-1) unstable; urgency=medium
 
   * New upstream release. Closes: #763809.
