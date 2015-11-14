@@ -6,7 +6,8 @@ if [ "$1" = "" ]; then
 fi
 
 #KEY=Testing
-KEY=59A53CC1
+#KEY=59A53CC1
+KEY=CA74D8BA
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
