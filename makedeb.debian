@@ -5,6 +5,9 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
+#KEY=Testing
+KEY=59A53CC1
+
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
 DEBIANMOD="-1"
@@ -41,23 +44,13 @@ if true; then
 	#pdebuild --debsign-k Testing
 	#pdebuild --debsign-k 59A53CC1
 
-	echo Building binary...
-	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k59A53CC1 -rfakeroot
+	#echo Building binary...
+	#docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k$KEY -rfakeroot
+
+	echo Building source...
+	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -S -sa -k$KEY -rfakeroot
 fi
 
-#cp -r "source-$VERSION" "binary-$VERSION"
-
-#dpkg-buildpackage -kTesting -rfakeroot
-# 
-# echo Building source...
-# cd "source-$VERSION/zeroinstall-injector-$VERSION"
-# if [ "$2" = "--test" ]; then
-#   dpkg-buildpackage -S -sa -kTesting -rfakeroot
-# else
-#   dpkg-buildpackage -S -sa -k59A53CC1 -rfakeroot
-# fi
-
-# TODO: use pdebuild to run lintian?
 echo Running lintian...
 CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
 docker run --rm -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
