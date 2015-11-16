@@ -1,3 +1,10 @@
+zeroinstall-injector (2.10-2) unstable; urgency=medium
+
+  * Conflict with 0install-core < 2.10 to avoid upgrade failure.
+    Fixes #805283.
+
+ -- Thomas Leonard <talex5@gmail.com>  Mon, 16 Nov 2015 11:49:40 +0000
+
 zeroinstall-injector (2.10-1) unstable; urgency=medium
 
   * New upstream release. Closes: #804431 (build failure).

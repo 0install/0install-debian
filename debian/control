@@ -11,6 +11,8 @@ Vcs-Git: https://github.com/0install/0install-debian.git
 Package: 0install
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, 0install-core (>= ${source:Version}), libgtk2.0-0
+Replaces: 0install-core (<< 2.10-1)
+Breaks: 0install-core (<< 2.10-1)
 Description: cross-distribution packaging system
  Zero Install is a decentralised cross-distribution software installation
  system available under the LGPL. It allows software developers to publish
