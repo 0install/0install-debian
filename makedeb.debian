@@ -5,9 +5,9 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-#KEY=Testing
+KEY=Testing
 #KEY=59A53CC1
-KEY=CA74D8BA
+#KEY=CA74D8BA
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
@@ -22,42 +22,50 @@ fi
 orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
 BUILD_DIR="build-$VERSION"
-if true; then
-	rm -rf "$BUILD_DIR"
-	mkdir -p "$BUILD_DIR"
 
-	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+rm -rf "$BUILD_DIR"
+mkdir -p "$BUILD_DIR"
 
-	cp "$TMP_TAR" "$BUILD_DIR/$orig"
+echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
 
-	cd "$BUILD_DIR"
-	tar xjf "$orig"
-	if [ "$VERSION" != "$DEBIANVERSION" ]; then
-		mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
-	fi
-	#cd "0install-$DEBIANVERSION"
-	cp -r ../debian 0install-$DEBIANVERSION/
-	cd ..
+cp "$TMP_TAR" "$BUILD_DIR/$orig"
 
-	#make share/locale/zero-install.pot	# So launchpad will translate it
-
-	#pdebuild
-	#pdebuild --debsign-k Testing
-	#pdebuild --debsign-k 59A53CC1
-
-	#echo Building binary...
-	#docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k$KEY -rfakeroot
-
-	echo Building source...
-	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -S -sa -k$KEY -rfakeroot
+cd "$BUILD_DIR"
+tar xjf "$orig"
+if [ "$VERSION" != "$DEBIANVERSION" ]; then
+	mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
 fi
+cp -r ../debian 0install-$DEBIANVERSION/
+
+#make share/locale/zero-install.pot	# So launchpad will translate it
+
+# Start Apache...
+docker rm -f reprepro
+docker run -d --name reprepro --expose 80 -p 8080:8080 -v `pwd`:/mnt reprepro /usr/sbin/apache2ctl -D FOREGROUND
+
+echo Building source...
+docker run --rm -u tal -v `pwd`:/mnt -it -w /mnt/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -S -sa -k$KEY -rfakeroot
+
+# Import source
+docker exec reprepro bash -c 'reprepro includedsc sid /mnt/zeroinstall-injector_*.dsc'
+
+echo Building binary...
+docker run --rm -u tal -v `pwd`:/mnt -it -w /mnt/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage -k$KEY -rfakeroot
+
+# Import binary
+docker exec reprepro bash -c 'reprepro includedeb sid /mnt/*.deb'
+
+cd ..
+
+# Test clean install
+docker run --rm -v `pwd`:/mnt --link reprepro:www debian:sid /mnt/test-install
+
+# Test upgrade
+docker run --rm -v `pwd`:/mnt --link reprepro:www debian:sid bash -c 'apt-get update && apt-get -y install 0install --no-install-recommends && /mnt/test-install'
 
 echo Running lintian...
 CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
 docker run --rm -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
-
-#echo cd "build-$VERSION"
-#echo dupload -t mentors *_source.changes
 
 OLD_0INSTALL=build-2.8/0install_2.8-1_amd64.deb
 OLD_CORE=build-2.8/0install-core_2.8-1_amd64.deb
@@ -76,4 +84,4 @@ mkdir $BUILD_DIR/gnupg
 docker run --rm -u tal -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
 DEB=$BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb
 
-echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
+echo docker run --rm -u tal -v `pwd`:/mnt -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
