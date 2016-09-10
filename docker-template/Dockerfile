@@ -3,7 +3,7 @@ RUN apt-get update
 
 # Core build tools
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential lintian vim
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y build-essential lintian
 
 # 0install build dependencies
 
