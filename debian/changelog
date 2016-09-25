@@ -1,3 +1,10 @@
+zeroinstall-injector (2.12-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add missing build dep. Closes: #837226.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 25 Sep 2016 07:55:43 +0000
+
 zeroinstall-injector (2.10-2) unstable; urgency=medium
 
   * Conflict with 0install-core < 2.10 to avoid upgrade failure.

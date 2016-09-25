@@ -7,10 +7,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y build-es
 
 # 0install build dependencies
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gettext ocaml-nox ocaml-findlib libyojson-ocaml-dev libxmlm-ocaml-dev camlp4-extra make liblwt-ocaml-dev libounit-ocaml-dev libextlib-ocaml-dev libcurl-ocaml-dev libssl-ocaml-dev libobus-ocaml-dev liblablgtk2-ocaml-dev liblwt-glib-ocaml-dev --no-install-recommends
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gettext ocaml-nox ocaml-findlib libyojson-ocaml-dev libxmlm-ocaml-dev camlp4-extra make liblwt-ocaml-dev --no-install-recommends
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libounit-ocaml-dev libextlib-ocaml-dev libcurl-ocaml-dev libssl-ocaml-dev libobus-ocaml-dev liblablgtk2-ocaml-dev liblwt-glib-ocaml-dev --no-install-recommends
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y devscripts fakeroot quilt dh-make less
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dh-ocaml
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y devscripts fakeroot quilt dh-make less dh-ocaml
 
 # Run-time utilities (needed for testing)
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils python-gobject-2 ocaml-native-compilers
