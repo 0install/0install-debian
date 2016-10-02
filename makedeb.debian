@@ -8,14 +8,15 @@ fi
 # Set to "n" for mentors upload
 BINARY=n
 #KEY=Testing
-KEY=CA74D8BA
+KEY=CA74D8BA		# 2009
+#KEY=94F6E0CC		# 2016
 
 OLD_DEB_VERSION="2.10-2"
 OLD_VERSION=${OLD_DEB_VERSION%-*}
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-1"
+DEBIANMOD="-2"
 TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
@@ -85,7 +86,7 @@ if [ "$BINARY" = "y" ]; then
 	echo "OK! Hint:"
 	echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
 else
-	# sudo pbuilder --create sid
+	# sudo pbuilder --create sid --debootstrapopts --variant=buildd --removepackages tzdata
 	#echo "Updating pbuilder"
 	#sudo pbuilder --update
 	echo "Test with pbuilder"
