@@ -29,7 +29,7 @@ Description: cross-distribution packaging system
 Package: 0install-core
 Architecture: any
 Depends: ${misc:Depends}, gnupg, bzip2, adduser, xdg-utils, ca-certificates, ${shlibs:Depends}
-Recommends: unzip, lzma, packagekit | python3-aptdaemon.pkcompat
+Recommends: unzip, lzma, packagekit
 Suggests: cabextract, rpm2cpio, 0install
 Provides: zeroinstall-injector
 Replaces: zeroinstall-injector (<< 2.3.3-2)

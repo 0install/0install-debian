@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12-3) unstable; urgency=medium
+
+  * Don't recommend python3-aptdaemon.pkcompat. Closes: 848559.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 01 Jan 2017 10:30:06 +0000
+
 zeroinstall-injector (2.12-2) unstable; urgency=medium
 
   * Add missing build dep on tzdata. Closes: #839511.
