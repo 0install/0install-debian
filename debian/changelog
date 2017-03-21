@@ -1,3 +1,10 @@
+zeroinstall-injector (2.12-4) unstable; urgency=medium
+
+  * Replace openssl with ocaml-sha for hash functions.
+    This fixes a build problem on Ubuntu.
+
+ -- Thomas Leonard <talex5@gmail.com>  Tue, 21 Mar 2017 07:54:00 +0000
+
 zeroinstall-injector (2.12-3) unstable; urgency=medium
 
   * Don't recommend python3-aptdaemon.pkcompat. Closes: #848559.

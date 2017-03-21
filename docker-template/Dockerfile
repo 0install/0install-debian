@@ -3,12 +3,12 @@ RUN apt-get update
 
 # Core build tools
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y build-essential lintian
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y build-essential lintian vim
 
 # 0install build dependencies
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gettext ocaml-nox ocaml-findlib libyojson-ocaml-dev libxmlm-ocaml-dev camlp4-extra make liblwt-ocaml-dev --no-install-recommends
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libounit-ocaml-dev libextlib-ocaml-dev libcurl-ocaml-dev libssl-ocaml-dev libobus-ocaml-dev liblablgtk2-ocaml-dev liblwt-glib-ocaml-dev --no-install-recommends
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libounit-ocaml-dev libextlib-ocaml-dev libcurl-ocaml-dev libsha-ocaml-dev libobus-ocaml-dev liblablgtk2-ocaml-dev liblwt-glib-ocaml-dev --no-install-recommends
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y devscripts fakeroot quilt dh-make less dh-ocaml
 
