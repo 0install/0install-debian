@@ -2,7 +2,26 @@ Source: zeroinstall-injector
 Section: admin
 Priority: extra
 Maintainer: Thomas Leonard <talex5@gmail.com>
-Build-Depends: debhelper (>= 9), ocaml-nox, dh-ocaml, ocaml-findlib, libyojson-ocaml-dev, libxmlm-ocaml-dev, camlp4-extra, gettext, liblwt-ocaml-dev, libounit-ocaml-dev, libextlib-ocaml-dev, libcurl-ocaml-dev, libsha-ocaml-dev, libobus-ocaml-dev, liblablgtk2-ocaml-dev, liblwt-glib-ocaml-dev, unzip, binutils, gnupg, tzdata
+Build-Depends: binutils,
+               camlp4-extra,
+               debhelper (>= 9),
+               dh-ocaml,
+               gettext,
+               gnupg,
+               libcurl-ocaml-dev,
+               libextlib-ocaml-dev,
+               liblablgtk2-ocaml-dev,
+               liblwt-glib-ocaml-dev,
+               liblwt-ocaml-dev,
+               libobus-ocaml-dev,
+               libounit-ocaml-dev,
+               libsha-ocaml-dev,
+               libxmlm-ocaml-dev,
+               libyojson-ocaml-dev,
+               ocaml-findlib,
+               ocaml-nox,
+               tzdata,
+               unzip
 Standards-Version: 3.9.8
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
@@ -10,7 +29,10 @@ Vcs-Git: https://github.com/0install/0install-debian.git
 
 Package: 0install
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, 0install-core (>= ${source:Version}), libgtk2.0-0
+Depends: 0install-core (>= ${source:Version}),
+         libgtk2.0-0,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Replaces: 0install-core (<< 2.10-1)
 Breaks: 0install-core (<< 2.10-1)
 Description: cross-distribution packaging system
@@ -28,9 +50,15 @@ Description: cross-distribution packaging system
 
 Package: 0install-core
 Architecture: any
-Depends: ${misc:Depends}, gnupg, bzip2, adduser, xdg-utils, ca-certificates, ${shlibs:Depends}
-Recommends: unzip, lzma, packagekit
-Suggests: cabextract, rpm2cpio, 0install
+Depends: adduser,
+         bzip2,
+         ca-certificates,
+         gnupg,
+         xdg-utils,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: lzma, packagekit, unzip
+Suggests: 0install, cabextract, rpm2cpio
 Provides: zeroinstall-injector
 Replaces: zeroinstall-injector (<< 2.3.3-2)
 Breaks: zeroinstall-injector (<< 2.3.3-2)
@@ -47,7 +75,7 @@ Package: zeroinstall-injector
 Architecture: all
 Section: oldlibs
 Pre-Depends: dpkg (>= 1.17.5)
-Depends: ${misc:Depends}, 0install, 0install-core
+Depends: 0install, 0install-core, ${misc:Depends}
 Description: transitional package for 0install
  This is a transitional package for 0install, and can be safely removed
  after the installation is complete.
