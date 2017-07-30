@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12-5) unstable; urgency=medium
+
+  * Add build-depends on ocamlbuild. Closes: #870037.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 30 Jul 2017 09:15:07 +0000
+
 zeroinstall-injector (2.12-4) unstable; urgency=medium
 
   * Replace openssl with ocaml-sha for hash functions.

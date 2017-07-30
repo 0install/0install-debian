@@ -18,11 +18,12 @@ Build-Depends: binutils,
                libsha-ocaml-dev,
                libxmlm-ocaml-dev,
                libyojson-ocaml-dev,
+               ocamlbuild,
                ocaml-findlib,
                ocaml-nox,
                tzdata,
                unzip
-Standards-Version: 3.9.8
+Standards-Version: 4.0.0
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git
