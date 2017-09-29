@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12.2-1) unstable; urgency=medium
+
+  * New upstream release. Closes: #870151.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 06 Aug 2017 18:06:06 +0000
+
 zeroinstall-injector (2.12-5) unstable; urgency=medium
 
   * Add build-depends on ocamlbuild. Closes: #870037.
