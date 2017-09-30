@@ -34,6 +34,7 @@ if true; then
 	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
 
 	cp "$TMP_TAR" "$BUILD_DIR/$orig"
+	cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
 
 	cd "$BUILD_DIR"
 	tar xjf "$orig"

@@ -1,6 +1,6 @@
 Source: zeroinstall-injector
 Section: admin
-Priority: extra
+Priority: optional
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: binutils,
                camlp4-extra,
@@ -23,7 +23,7 @@ Build-Depends: binutils,
                ocaml-nox,
                tzdata,
                unzip
-Standards-Version: 4.0.0
+Standards-Version: 4.1.1
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git
@@ -75,6 +75,7 @@ Description: cross-distribution packaging system (non-GUI parts)
 Package: zeroinstall-injector
 Architecture: all
 Section: oldlibs
+Priority: extra
 Pre-Depends: dpkg (>= 1.17.5)
 Depends: 0install, 0install-core, ${misc:Depends}
 Description: transitional package for 0install
