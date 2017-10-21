@@ -1,6 +1,7 @@
 zeroinstall-injector (2.12.2-2) unstable; urgency=medium
 
-  * Removed work-around for old versions of Lwt.
+  * Remove work-around for old versions of Lwt.
+  * Remove transitional zeroinstall-injector package. Closes: #878993.
 
  -- Thomas Leonard <talex5@gmail.com>  Sat, 21 Oct 2017 10:21:44 +0000
 

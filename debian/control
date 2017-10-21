@@ -71,16 +71,3 @@ Description: cross-distribution packaging system (non-GUI parts)
  updates and digital signatures. It is intended to complement, rather than
  replace, the operating system's package management. 0install packages never
  interfere with those provided by the distribution.
-
-Package: zeroinstall-injector
-Architecture: all
-Section: oldlibs
-Priority: extra
-Pre-Depends: dpkg (>= 1.17.5)
-Depends: 0install, 0install-core, ${misc:Depends}
-Description: transitional package for 0install
- This is a transitional package for 0install, and can be safely removed
- after the installation is complete.
- .
- Note: If you have a headless system, install just the 0install-core package to
- avoid pulling in any GUI dependencies.

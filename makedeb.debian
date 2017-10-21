@@ -69,12 +69,10 @@ if [ "$BINARY" = "y" ]; then
 
 	OLD_0INSTALL=build-$OLD_VERSION/0install_${OLD_DEB_VERSION}_amd64.deb
 	OLD_CORE=build-$OLD_VERSION/0install-core_${OLD_DEB_VERSION}_amd64.deb
-	OLD_ZERO=build-$OLD_VERSION/zeroinstall-injector_${OLD_DEB_VERSION}_all.deb
 
 	# deb-diff
 	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
 	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_0INSTALL $BUILD_DIR/0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
-	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_ZERO $BUILD_DIR/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_all.deb || echo Changes
 
 	echo "Testing... press RETURN"
 	read
