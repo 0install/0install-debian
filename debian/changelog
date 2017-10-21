@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12.2-2) unstable; urgency=medium
+
+  * Removed work-around for old versions of Lwt.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 21 Oct 2017 10:21:44 +0000
+
 zeroinstall-injector (2.12.2-1) unstable; urgency=medium
 
   * New upstream release. Closes: #870151.
