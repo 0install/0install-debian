@@ -18,7 +18,7 @@ build-stamp:
 	if [ -x /usr/bin/ocamlopt ]; then \
 		make -C $(CURDIR) TYPE=native; \
 	else \
-		make -C $(CURDIR) TYPE=byte; \
+		make -C $(CURDIR) all TYPE=byte; \
 	fi
 	touch $@
 

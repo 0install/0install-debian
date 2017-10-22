@@ -1,3 +1,16 @@
+zeroinstall-injector (2.12.2-4) unstable; urgency=medium
+
+  * Disable tests on byte-code platforms.
+    They're not currently working due to the OCaml 4.05 transition.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 29 Oct 2017 09:20:39 +0000
+
+zeroinstall-injector (2.12.2-3) unstable; urgency=medium
+
+  * Fix building the byte-code version.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 22 Oct 2017 14:15:56 +0000
+
 zeroinstall-injector (2.12.2-2) unstable; urgency=medium
 
   * Remove work-around for old versions of Lwt.
