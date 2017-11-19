@@ -1,3 +1,3 @@
 #!/bin/bash
 set -eux
-docker build -t talex5/deb-builder .
+docker build --pull -t talex5/deb-builder .

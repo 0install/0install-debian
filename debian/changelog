@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 19 Nov 2017 15:55:15 +0000
+
 zeroinstall-injector (2.12.2-4) unstable; urgency=medium
 
   * Disable tests on byte-code platforms.

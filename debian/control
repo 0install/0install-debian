@@ -3,13 +3,12 @@ Section: admin
 Priority: optional
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: binutils,
-               camlp4-extra,
+               cppo,
                debhelper (>= 9),
                dh-ocaml,
                gettext,
                gnupg,
                libcurl-ocaml-dev,
-               libextlib-ocaml-dev,
                liblablgtk2-ocaml-dev,
                liblwt-glib-ocaml-dev,
                liblwt-ocaml-dev (>= 2.7.0),
