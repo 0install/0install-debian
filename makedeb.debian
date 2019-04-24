@@ -12,7 +12,6 @@ BINARY=y
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
 
 OLD_DEB_VERSION="2.12.3-1"
-OLD_VERSION=${OLD_DEB_VERSION%-*}
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
@@ -26,7 +25,7 @@ fi
 
 orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
-BUILD_DIR="build-$VERSION"
+BUILD_DIR="build-$VERSION$DEBIANMOD"
 if true; then
 	rm -rf "$BUILD_DIR"
 	mkdir -p "$BUILD_DIR"
@@ -67,8 +66,8 @@ if [ "$BINARY" = "y" ]; then
 	#echo cd "build-$VERSION"
 	#echo dupload -t mentors *_source.changes
 
-	OLD_0INSTALL=build-$OLD_VERSION/0install_${OLD_DEB_VERSION}_amd64.deb
-	OLD_CORE=build-$OLD_VERSION/0install-core_${OLD_DEB_VERSION}_amd64.deb
+	OLD_0INSTALL=build-$OLD_DEB_VERSION/0install_${OLD_DEB_VERSION}_amd64.deb
+	OLD_CORE=build-$OLD_DEB_VERSION/0install-core_${OLD_DEB_VERSION}_amd64.deb
 
 	# deb-diff
 	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
