@@ -1,0 +1,14 @@
+Fix check for HTTP Location header
+diff --git a/ocaml/zeroinstall/downloader.ml b/ocaml/zeroinstall/downloader.ml
+index 6eb7998c..f00d907b 100644
+--- a/ocaml/zeroinstall/downloader.ml
++++ b/ocaml/zeroinstall/downloader.ml
+@@ -46,7 +46,7 @@ let download_no_follow ~cancelled ?size ?modification_time ?(start_offset=Int64.
+   Lwt.catch (fun () ->
+     let redirect = ref None in
+     let check_header header =
+-      if U.starts_with header "Location:" then (
++      if U.starts_with (String.lowercase_ascii header) "location:" then (
+         redirect := Some (U.string_tail header 9 |> String.trim)
+       );
+       String.length header in

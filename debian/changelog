@@ -1,3 +1,9 @@
+zeroinstall-injector (2.12.3-2) unstable; urgency=high
+
+  * Backport fix for case-sensitive HTTP header check. Closes: #927873.
+
+ -- Thomas Leonard <talex5@gmail.com>  Wed, 24 Apr 2019 11:05:04 +0000
+
 zeroinstall-injector (2.12.3-1) unstable; urgency=medium
 
   * New upstream release.
