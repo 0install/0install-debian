@@ -26,6 +26,14 @@ License:
 On Debian systems, the complete text of the GNU Lesser General
 Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
+Due to the Debian transition to OCaml 4.08, this package is currently vendoring
+several libraries which have been removed from the archive. They are:
+
+- camlp4-4.05+2 (LGPL-2) https://github.com/ocaml/camlp4
+- lwt_glib-1.1.1 (LGPL-2.1) https://github.com/ocsigen/lwt_glib
+- lwt_camlp4-2018-03-25 (LGPL-2.1) https://github.com/ocsigen/lwt_camlp4
+- type_conv-113.00.02 (Apache-2.0 + BSD-C3) https://github.com/janestreet/type_conv
+- obus-1.1.7 (BSD-C3) https://github.com/ocaml-community/obus/
 
 The Debian packaging is (C) Copyright 2014, Thomas Leonard <talex5@gmail.com>
 and is also licensed under the LGPL 2.1 or later.

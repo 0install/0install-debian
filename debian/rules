@@ -13,13 +13,19 @@ build: build-arch
 build-indep:
 build-arch: build-stamp
 
+VENDOR := /tmp/0install-build-vendor
+OCAMLPATH := $(VENDOR)/usr/lib/ocaml
+PATH := $(VENDOR)/usr/bin:$(PATH)
+
 build-stamp:
 	dh_testdir
+	(cd vendor && ./fix-debian.sh) && rm -rf vendor
 	if [ -x /usr/bin/ocamlopt ]; then \
-		make -C $(CURDIR) TYPE=native; \
+		make OCAMLPATH=$(OCAMLPATH) TYPE=native; \
 	else \
-		make -C $(CURDIR) all TYPE=byte; \
+		make OCAMLPATH=$(OCAMLPATH) all TYPE=byte; \
 	fi
+	rm -rf /tmp/0install-build-vendor
 	touch $@
 
 install: build-stamp

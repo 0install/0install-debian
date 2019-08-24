@@ -10,9 +10,7 @@ Build-Depends: binutils,
                gnupg,
                libcurl-ocaml-dev,
                liblablgtk2-ocaml-dev,
-               liblwt-glib-ocaml-dev,
                liblwt-ocaml-dev (>= 2.7.0),
-               libobus-ocaml-dev,
                libounit-ocaml-dev,
                libsha-ocaml-dev,
                libxmlm-ocaml-dev,
@@ -20,9 +18,10 @@ Build-Depends: binutils,
                ocaml-dune,
                ocaml-findlib,
                ocaml-nox,
+               ocamlbuild,
                tzdata,
                unzip
-Standards-Version: 4.1.1
+Standards-Version: 4.4.0
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git

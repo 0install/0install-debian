@@ -22,25 +22,24 @@ if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
   exit 1
 fi
+TMP_TAR=/DISABLED
 
-orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
+orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.gz"
 
 BUILD_DIR="build-$VERSION$DEBIANMOD"
 if true; then
 	rm -rf "$BUILD_DIR"
 	mkdir -p "$BUILD_DIR"
 
-	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+	#echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
 
-	cp "$TMP_TAR" "$BUILD_DIR/$orig"
-	cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
+	#cp "$TMP_TAR" "$BUILD_DIR/$orig"
+	#cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
 
 	cd "$BUILD_DIR"
-	tar xjf "$orig"
-	if [ "$VERSION" != "$DEBIANVERSION" ]; then
-		mv "0install-$VERSION" "0install-$DEBIANVERSION"	# XXX
-	fi
-	#cd "0install-$DEBIANVERSION"
+	cp ../$orig .
+	tar xf "$orig"
+	mv 0install-debian-fix-debian-4.05 0install-$DEBIANVERSION
 	cp -r ../debian 0install-$DEBIANVERSION/
 	cd ..
 
