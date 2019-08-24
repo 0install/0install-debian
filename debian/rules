@@ -30,7 +30,6 @@ install: build-stamp
 	$(CURDIR)/dist/install.sh $(CURDIR)/debian/0install-core/usr
 	mkdir -p $(CURDIR)/debian/0install/usr/lib/0install.net
 	mkdir -p $(CURDIR)/debian/0install/usr/share/applications
-	rm -f $(CURDIR)/debian/0install-core/usr/lib/0install.net/gui_gtk.cmxa # (also fixed upstream)
 	mv $(CURDIR)/debian/0install-core/usr/lib/0install.net/gui_gtk.* $(CURDIR)/debian/0install/usr/lib/0install.net/
 	mv $(CURDIR)/debian/0install-core/usr/share/applications/0install.desktop $(CURDIR)/debian/0install/usr/share/applications/
 	rmdir $(CURDIR)/debian/0install-core/usr/lib/0install.net

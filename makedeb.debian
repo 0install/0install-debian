@@ -15,7 +15,7 @@ OLD_DEB_VERSION="2.12.3-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-2"
+DEBIANMOD="-1"
 TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
