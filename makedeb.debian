@@ -5,8 +5,7 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-# Set to "n" for mentors upload
-BINARY=y
+BINARY=n
 #KEY=Testing
 #KEY=CA74D8BA		# 2009
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
@@ -38,6 +37,7 @@ if true; then
 
 	cd "$BUILD_DIR"
 	cp ../$orig .
+	cp ../$orig.asc .
 	tar xf "$orig"
 	mv 0install-debian-fix-debian-4.05 0install-$DEBIANVERSION
 	cp -r ../debian 0install-$DEBIANVERSION/
@@ -87,7 +87,8 @@ else
 	#echo "Updating pbuilder"
 	#sudo pbuilder --update
 	echo "Test with pbuilder"
-	sudo pbuilder --build build-${VERSION}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}.dsc
+	sudo pbuilder --build ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}.dsc
 	echo "OK! Hint:"
-	echo dput mentors build-${VERSION}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
+	echo dput ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
+	#echo dput mentors ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
 fi
