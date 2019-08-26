@@ -6,7 +6,7 @@
  (ocamlc_flags   -linkall -custom)
  (link_flags  (:include support/extra_objects.sexp))
  (package     0install)
- (libraries   zeroinstall_cli zeroinstall))
+ (libraries   zeroinstall_cli zeroinstall threads))
 
 (executable
  (public_name 0install-runenv.exe)
