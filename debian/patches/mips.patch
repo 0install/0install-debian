@@ -1,0 +1,27 @@
+commit 9157d166c377802a7f7cc9e48a28b79c74995571
+Author: Thomas Leonard <talex5@gmail.com>
+Date:   Sat Aug 31 12:03:55 2019 +0100
+
+    Fix camlp4 build on MIPS
+
+diff --git a/vendor/fix-debian.sh b/vendor/fix-debian.sh
+index 4f33371a..8fe2b769 100755
+--- a/vendor/fix-debian.sh
++++ b/vendor/fix-debian.sh
+@@ -14,9 +14,15 @@ tar xf $SRCDIR/lwt_camlp4-2018-03-25.bz2
+ tar xf $SRCDIR/type_conv-113.00.02.tar.gz
+ tar xf $SRCDIR/obus-1.1.7.tar.gz
+ tar xf $SRCDIR/lwt_glib-1.1.1.tar.gz
++if [ -x /usr/bin/ocamlopt ]
++then
++  CAMLP4_TARGET=all
++else
++  CAMLP4_TARGET=default
++fi
+ (cd camlp4-4.05-2 && sed -i '/+camlp4/d' camlp4/META.in && \
+ 	./configure --bindir=$DESTDIR/usr/bin --libdir=$OCAMLPATH --pkgdir=$OCAMLPATH && \
+-	make all && make install install-META)
++	make $CAMLP4_TARGET && make install install-META)
+ (cd lwt_camlp4-2018-03-25 && jbuilder build @install && jbuilder install)
+ (cd type_conv-113.00.02 && ./configure --prefix $DESTDIR && make && make install)
+ (cd obus-1.1.7 &&

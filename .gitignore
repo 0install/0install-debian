@@ -1,0 +1,6 @@
+*.gz
+*.bz2
+*.deb
+*.asc
+*.gpg
+build-*

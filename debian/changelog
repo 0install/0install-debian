@@ -1,3 +1,9 @@
+zeroinstall-injector (2.14.1-2) unstable; urgency=medium
+
+  * Fix camlp4 on MIPS.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sat, 31 Aug 2019 10:49:24 +0000
+
 zeroinstall-injector (2.14.1-1) unstable; urgency=high
 
   * New upstream release.
