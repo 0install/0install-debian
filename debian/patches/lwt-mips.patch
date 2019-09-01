@@ -1,0 +1,37 @@
+commit f33a79b2854ffb6c03b048805c3b4ba27eee7c8b
+Author: Thomas Leonard <talex5@gmail.com>
+Date:   Sun Sep 1 15:38:24 2019 +0100
+
+    HACK: fix linker error on Debian MIPS
+    
+    Fixed in later versions of LWT:
+    
+    https://github.com/ocsigen/lwt/pull/362
+    
+    Error was:
+    
+        /usr/bin/ld: /usr/lib/ocaml/lwt/liblwt-unix_stubs.a(lwt_unix_stubs.o): in function `cst_to_constr':
+        (.text+0x2c30): multiple definition of `cst_to_constr'; /usr/lib/ocaml/libunix.a(cst2constr.o):(.text+0x0): first defined here
+
+diff --git a/ocaml/dune b/ocaml/dune
+index 7b6404c9..a58e4d3b 100644
+--- a/ocaml/dune
++++ b/ocaml/dune
+@@ -4,7 +4,7 @@
+  (modules     static_0install)
+  (ocamlopt_flags -linkall)	; Needed for the GUI plugin
+  (ocamlc_flags   -linkall -custom)
+- (link_flags  (:include support/extra_objects.sexp))
++ (link_flags  (:include support/extra_objects.sexp) -cclib -Wl,--allow-multiple-definition)
+  (package     0install)
+  (libraries   zeroinstall_cli zeroinstall threads))
+ 
+@@ -12,7 +12,7 @@
+  (public_name 0install-runenv.exe)
+  (name        runenv)
+  (modules     runenv)
+- (link_flags  (:include support/extra_objects.sexp))
++ (link_flags  (:include support/extra_objects.sexp) -cclib -Wl,--allow-multiple-definition)
+  (libraries   zeroinstall_cli zeroinstall))
+ 
+ (install
