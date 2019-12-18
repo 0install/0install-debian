@@ -14,32 +14,29 @@ OLD_DEB_VERSION="2.14.1-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-3"
-TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
+DEBIANMOD="-1"
+#TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
+TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION-debian.tar.bz2"
 
 if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
   exit 1
 fi
-TMP_TAR=/DISABLED
 
-orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.gz"
+orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
 BUILD_DIR="build-$VERSION$DEBIANMOD"
 if true; then
 	rm -rf "$BUILD_DIR"
 	mkdir -p "$BUILD_DIR"
 
-	#echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
 
-	#cp "$TMP_TAR" "$BUILD_DIR/$orig"
-	#cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
+	cp "$TMP_TAR" "$BUILD_DIR/$orig"
+	cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
 
 	cd "$BUILD_DIR"
-	cp ../$orig .
-	cp ../$orig.asc .
 	tar xf "$orig"
-	mv 0install-debian-fix-debian-4.05 0install-$DEBIANVERSION
 	cp -r ../debian 0install-$DEBIANVERSION/
 	cd ..
 
@@ -77,11 +74,11 @@ if [ "$BINARY" = "y" ]; then
 
 	cp test-script $BUILD_DIR
 	mkdir $BUILD_DIR/gnupg
-	docker run --rm -u tal -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
+	docker run --rm -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
 	DEB=$BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb
 
-	echo "OK! Hint:"
-	echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
+	#echo "OK! Now do a source build."
+	#echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
 else
 	# sudo pbuilder --create sid --debootstrapopts --variant=buildd --removepackages tzdata
 	#echo "Updating pbuilder"

@@ -1,5 +1,4 @@
 FROM debian:sid
-RUN apt-get update
 
 # Core build tools
 
@@ -33,7 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils python-gobject-2 ocaml-native-compilers
 
 # merge-me
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip ocamlbuild --no-install-recommends
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip ocamlbuild libppxlib-ocaml-dev liblwt-log-ocaml-dev menhir --no-install-recommends
 
 RUN useradd -U -u 1000 -m tal
 

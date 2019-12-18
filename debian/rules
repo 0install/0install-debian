@@ -14,12 +14,11 @@ build-indep:
 build-arch: build-stamp
 
 VENDOR := /tmp/0install-build-vendor
-OCAMLPATH := $(VENDOR)/usr/lib/ocaml
-PATH := $(VENDOR)/usr/bin:$(PATH)
+OCAMLPATH := $(VENDOR)/lib
 
 build-stamp:
 	dh_testdir
-	(cd vendor && ./fix-debian.sh) && rm -rf vendor
+	mv vendor/lwt_glib-1.1.1 . && dune build @lwt_glib-1.1.1/install && dune install --prefix=$(VENDOR) lwt_glib && rm -rf lwt_glib-1.1.1
 	if [ -x /usr/bin/ocamlopt ]; then \
 		make OCAMLPATH=$(OCAMLPATH) TYPE=native; \
 	else \
