@@ -19,6 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libounit-ocaml-dev \
 	libcurl-ocaml-dev \
 	libsha-ocaml-dev \
+	libobus-ocaml-dev \
 	liblablgtk2-ocaml-dev \
 	devscripts \
 	fakeroot \
@@ -26,13 +27,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	dh-make \
 	less \
 	dh-ocaml \
+	ocamlbuild \
+	libppxlib-ocaml-dev \
+	liblwt-log-ocaml-dev \
+	menhir \
 	--no-install-recommends
 
 # Run-time utilities (needed for testing)
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils python-gobject-2 ocaml-native-compilers
-
-# merge-me
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip ocamlbuild libppxlib-ocaml-dev liblwt-log-ocaml-dev menhir --no-install-recommends
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip xdg-utils python-gobject-2 ocaml-native-compilers
 
 RUN useradd -U -u 1000 -m tal
 
