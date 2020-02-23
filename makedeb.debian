@@ -5,12 +5,11 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-BINARY=n
 #KEY=Testing
 #KEY=CA74D8BA		# 2009
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
 
-OLD_DEB_VERSION="2.14.1-1"
+OLD_DEB_VERSION="2.15-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
@@ -26,66 +25,58 @@ fi
 orig="zeroinstall-injector_$DEBIANVERSION.orig.tar.bz2"
 
 BUILD_DIR="build-$VERSION$DEBIANMOD"
+RESULT_DIR=/var/cache/pbuilder/result/
+
+# Create $BUILD_DIR
+rm -rf "$BUILD_DIR.old"
+if [ -d "$BUILD_DIR" ]; then mv "$BUILD_DIR" "$BUILD_DIR.old"; fi
+mkdir -p "$BUILD_DIR"
+
+# Extract source
+echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+cp "$TMP_TAR" "$BUILD_DIR/$orig"
+cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
+
+cd "$BUILD_DIR"
+tar xf "$orig"
+cp -r ../debian 0install-$DEBIANVERSION/
+cd ..
+
 if true; then
-	rm -rf "$BUILD_DIR"
-	mkdir -p "$BUILD_DIR"
+	# Build source
+	echo Building source...
+	BUILD_OPTS="-S -sa"
+	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION \
+		talex5/deb-builder dpkg-buildpackage $BUILD_OPTS -k$KEY -rfakeroot
 
-	echo "Copying $TMP_TAR as $BUILD_DIR/$orig..."
+	# Test the source pacakge
 
-	cp "$TMP_TAR" "$BUILD_DIR/$orig"
-	cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
-
-	cd "$BUILD_DIR"
-	tar xf "$orig"
-	cp -r ../debian 0install-$DEBIANVERSION/
-	cd ..
-
-	#pdebuild
-	#pdebuild --debsign-k Testing
-	#pdebuild --debsign-k 59A53CC1
-
-	if [ "$BINARY" = "y" ]; then
-		echo Building binary...
-		BUILD_OPTS=""
-	else
-		echo Building source...
-		BUILD_OPTS="-S -sa"
-	fi
-	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION talex5/deb-builder dpkg-buildpackage $BUILD_OPTS -k$KEY -rfakeroot
-fi
-
-if [ "$BINARY" = "y" ]; then
-	echo Running lintian...
-	CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
-	docker run --rm -u tal -v `pwd`/$BUILD_DIR:/mnt -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
-
-	#echo cd "build-$VERSION"
-	#echo dupload -t mentors *_source.changes
-
-	OLD_0INSTALL=build-$OLD_DEB_VERSION/0install_${OLD_DEB_VERSION}_amd64.deb
-	OLD_CORE=build-$OLD_DEB_VERSION/0install-core_${OLD_DEB_VERSION}_amd64.deb
-
-	# deb-diff
-	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_CORE $BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
-	docker run --rm -u tal -v `pwd`:/mnt talex5/deb-builder debdiff $OLD_0INSTALL $BUILD_DIR/0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
-
-	echo "Testing... press RETURN"
-	read
-
-	cp test-script $BUILD_DIR
-	mkdir $BUILD_DIR/gnupg
-	docker run --rm -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
-	DEB=$BUILD_DIR/0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb
-
-	#echo "OK! Now do a source build."
-	#echo docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR talex5/deb-builder dput "$CHANGES"
-else
 	# sudo pbuilder --create sid --debootstrapopts --variant=buildd --removepackages tzdata
 	#echo "Updating pbuilder"
 	#sudo pbuilder --update
-	echo "Test with pbuilder"
+	echo "Test source with pbuilder"
 	sudo pbuilder --build ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}.dsc
-	echo "OK! Hint:"
-	echo dput ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
-	#echo dput mentors ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
+
+	echo Running lintian...
+	CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
+	docker run --rm -u tal -v $RESULT_DIR:/mnt:ro -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
 fi
+
+OLD_0INSTALL=0install_${OLD_DEB_VERSION}_amd64.deb
+OLD_CORE=0install-core_${OLD_DEB_VERSION}_amd64.deb
+
+# deb-diff
+docker run --rm -u tal -v $RESULT_DIR:/mnt:ro talex5/deb-builder debdiff $OLD_CORE 0install-core_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
+docker run --rm -u tal -v $RESULT_DIR:/mnt:ro talex5/deb-builder debdiff $OLD_0INSTALL 0install_${DEBIANVERSION}${DEBIANMOD}_amd64.deb || echo Changes
+
+echo "Testing... press RETURN"
+read
+
+cp test-script $BUILD_DIR
+cp $RESULT_DIR/0install*_${DEBIANVERSION}${DEBIANMOD}_amd64.deb $BUILD_DIR/
+mkdir $BUILD_DIR/gnupg
+docker run --rm -it -u root -v `pwd`/$BUILD_DIR:/mnt talex5/deb-builder ./test-script
+
+# Upload
+echo "OK! Hint:"
+echo dput ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_source.changes
