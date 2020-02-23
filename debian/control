@@ -3,10 +3,8 @@ Section: admin
 Priority: optional
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: binutils,
-               cppo,
                debhelper (>= 9),
                dh-ocaml,
-               gettext,
                gnupg,
                libcurl-ocaml-dev,
                liblablgtk2-ocaml-dev,
@@ -17,7 +15,6 @@ Build-Depends: binutils,
                libyojson-ocaml-dev,
                libppxlib-ocaml-dev,
                liblwt-log-ocaml-dev,
-               menhir,
                ocaml-dune,
                ocaml-findlib,
                ocaml-nox,

@@ -7,12 +7,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y build-es
 # 0install build dependencies
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	gettext \
 	ocaml-nox \
 	ocaml-findlib \
 	libyojson-ocaml-dev \
 	libxmlm-ocaml-dev \
-	cppo \
 	make \
 	liblwt-ocaml-dev \
 	ocaml-dune \
@@ -30,7 +28,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	ocamlbuild \
 	libppxlib-ocaml-dev \
 	liblwt-log-ocaml-dev \
-	menhir \
 	--no-install-recommends
 
 # Run-time utilities (needed for testing)
