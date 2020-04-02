@@ -1,5 +1,5 @@
-ocaml/0launch.1
-ocaml/0store.1
-ocaml/0store-secure-add.1
-ocaml/0desktop.1
-ocaml/0install.1
+src/0launch.1
+src/0store.1
+src/0store-secure-add.1
+src/0desktop.1
+src/0install.1

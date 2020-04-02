@@ -6,16 +6,15 @@ if [ "$1" = "" ]; then
 fi
 
 #KEY=Testing
-#KEY=CA74D8BA		# 2009
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
 
-OLD_DEB_VERSION="2.15-1"
+OLD_DEB_VERSION="2.15.1-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
 DEBIANMOD="-1"
 #TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
-TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION-debian.tar.bz2"
+TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-v$VERSION-debian.tbz"
 
 if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
@@ -39,14 +38,14 @@ cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
 
 cd "$BUILD_DIR"
 tar xf "$orig"
-cp -r ../debian 0install-$DEBIANVERSION/
+cp -r ../debian 0install-v$DEBIANVERSION/
 cd ..
 
 if true; then
 	# Build source
 	echo Building source...
 	BUILD_OPTS="-S -sa"
-	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION \
+	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-v$DEBIANVERSION \
 		talex5/deb-builder dpkg-buildpackage $BUILD_OPTS -k$KEY -rfakeroot
 
 	# Test the source pacakge

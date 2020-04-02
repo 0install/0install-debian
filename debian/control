@@ -7,7 +7,7 @@ Build-Depends: binutils,
                dh-ocaml,
                gnupg,
                libcurl-ocaml-dev,
-               liblablgtk2-ocaml-dev,
+               liblablgtk3-ocaml-dev,
                liblwt-ocaml-dev (>= 2.7.0),
                libounit-ocaml-dev,
                libsha-ocaml-dev,
@@ -29,7 +29,7 @@ Vcs-Git: https://github.com/0install/0install-debian.git
 Package: 0install
 Architecture: any
 Depends: 0install-core (>= ${source:Version}),
-         libgtk2.0-0,
+         libgtk-3-0,
          ${misc:Depends},
          ${shlibs:Depends}
 Replaces: 0install-core (<< 2.10-1)
