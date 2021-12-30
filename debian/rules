@@ -18,7 +18,7 @@ OCAMLPATH := $(VENDOR)/lib
 
 build-stamp:
 	dh_testdir
-	mv vendor/lwt_glib-1.1.1 . && dune build @lwt_glib-1.1.1/install && dune install --prefix=$(VENDOR) lwt_glib && rm -rf lwt_glib-1.1.1
+	mv vendor/lwt_glib-1.1.1 . && dune build --release @lwt_glib-1.1.1/install && dune install --release --prefix=$(VENDOR) lwt_glib && rm -rf lwt_glib-1.1.1
 	if [ -x /usr/bin/ocamlopt ]; then \
 		make OCAMLPATH=$(OCAMLPATH) TYPE=native; \
 	else \

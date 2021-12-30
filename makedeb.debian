@@ -8,11 +8,11 @@ fi
 #KEY=Testing
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
 
-OLD_DEB_VERSION="2.15.1-1"
+OLD_DEB_VERSION="2.16-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-1"
+DEBIANMOD="-2"
 #TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
 TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-v$VERSION-debian.tbz"
 

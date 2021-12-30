@@ -3,7 +3,8 @@ Section: admin
 Priority: optional
 Maintainer: Thomas Leonard <talex5@gmail.com>
 Build-Depends: binutils,
-               debhelper (>= 9),
+               debhelper (>= 13),
+               debhelper-compat (= 13),
                dh-ocaml,
                gnupg,
                libcurl-ocaml-dev,
