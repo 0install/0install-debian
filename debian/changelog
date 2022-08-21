@@ -1,3 +1,9 @@
+zeroinstall-injector (2.18-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Leonard <talex5@gmail.com>  Sun, 21 Aug 2022 12:25:23 +0000
+
 zeroinstall-injector (2.16-2) unstable; urgency=medium
 
   * Make compiler warnings non-fatal. Closes: #1002272, #1002635.

@@ -1,5 +1,5 @@
 version=4
-opts=filenamemangle=s/.+\/0install-v(\d\S+)\.tbz/zeroinstall-injector_$1\.tbz/,\
-versionmangle=s/0install-v(\d\S)/$1/,\
-pgpsigurlmangle=s/\/0install-v(\d\S+)\.tbz/\/0install-v$1\.tbz\.sig/ \
+opts=filenamemangle=s/.+\/0install-v?(\d\S+)\.tbz/zeroinstall-injector_$1\.tbz/,\
+versionmangle=s/0install-v?(\d\S)/$1/,\
+pgpsigurlmangle=s/\/0install-v?(\d\S+)\.tbz/\/0install-$1\.tbz\.sig/ \
   https://github.com/0install/0install/releases .*/v?(\d\S+)\.tbz

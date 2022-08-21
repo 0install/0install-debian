@@ -22,7 +22,7 @@ Build-Depends: binutils,
                ocamlbuild,
                tzdata,
                unzip
-Standards-Version: 4.4.0
+Standards-Version: 4.6.1
 Homepage: http://0install.net/
 Vcs-Browser: https://github.com/0install/0install-debian
 Vcs-Git: https://github.com/0install/0install-debian.git

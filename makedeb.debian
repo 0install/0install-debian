@@ -12,9 +12,9 @@ OLD_DEB_VERSION="2.16-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-2"
+DEBIANMOD="-1"
 #TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
-TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-v$VERSION-debian.tbz"
+TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION-debian.tbz"
 
 if [ ! -e "$TMP_TAR" ]; then
   echo Missing: $TMP_TAR
@@ -38,14 +38,14 @@ cp "$TMP_TAR".sig "$BUILD_DIR/$orig".asc
 
 cd "$BUILD_DIR"
 tar xf "$orig"
-cp -r ../debian 0install-v$DEBIANVERSION/
+cp -r ../debian 0install-$DEBIANVERSION/
 cd ..
 
 if true; then
 	# Build source
 	echo Building source...
 	BUILD_OPTS="-S -sa"
-	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-v$DEBIANVERSION \
+	docker run --rm -u tal -v `pwd`:/mnt -v `pwd`/gnupg:/mnt/gnupg -it -w /mnt/$BUILD_DIR/0install-$DEBIANVERSION \
 		talex5/deb-builder dpkg-buildpackage $BUILD_OPTS -k$KEY -rfakeroot
 
 	# Test the source pacakge
@@ -58,7 +58,7 @@ if true; then
 
 	echo Running lintian...
 	CHANGES="zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}_amd64.changes"
-	docker run --rm -u tal -v $RESULT_DIR:/mnt:ro -it talex5/deb-builder lintian -i "$CHANGES" || echo Lintian failed
+	docker run --rm -u tal -v $RESULT_DIR:/mnt:ro -it talex5/deb-builder lintian -i "$CHANGES" --tag-display-limit 0 || echo Lintian failed
 fi
 
 OLD_0INSTALL=0install_${OLD_DEB_VERSION}_amd64.deb
