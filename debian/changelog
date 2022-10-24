@@ -1,3 +1,9 @@
+zeroinstall-injector (2.18-2) unstable; urgency=medium
+
+  * Fix build on bytecode-only platforms. Closes: #1022235.
+
+ -- Thomas Leonard <talex5@gmail.com>  Mon, 24 Oct 2022 13:25:32 +0000
+
 zeroinstall-injector (2.18-1) unstable; urgency=medium
 
   * New upstream release.

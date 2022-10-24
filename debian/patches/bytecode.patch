@@ -1,0 +1,38 @@
+From 41feae6c507959eadd1babc3e6515c8639ad8be0 Mon Sep 17 00:00:00 2001
+From: Thomas Leonard <talex5@gmail.com>
+Date: Mon, 24 Oct 2022 14:12:53 +0100
+Subject: [PATCH] Fix plugin loading on bytecode-only systems
+
+It seems that dune always builds the plugin as `gui_gtk.cmxs`, even when
+it's actually bytecode.
+---
+ src/gui_gtk/dune       | 2 +-
+ src/zeroinstall/gui.ml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui_gtk/dune b/src/gui_gtk/dune
+index 50506cae..b2b734f0 100644
+--- a/src/gui_gtk/dune
++++ b/src/gui_gtk/dune
+@@ -7,4 +7,4 @@
+ (install
+   (section lib)
+   (package 0install-gtk)
+-  (files gui_gtk%{ext_plugin}))
++  (files gui_gtk.cmxs))
+diff --git a/src/zeroinstall/gui.ml b/src/zeroinstall/gui.ml
+index d8d63c44..95c33f3c 100644
+--- a/src/zeroinstall/gui.ml
++++ b/src/zeroinstall/gui.ml
+@@ -324,7 +324,7 @@ let try_get_gui config ~use_gui =
+           let bindir = Filename.dirname (U.realpath system config.abspath_0install) in
+ 
+           let check_plugin_dir plugin_dir =
+-            let plugin_path = plugin_dir +/ "gui_gtk.cma" |> Dynlink.adapt_filename in
++            let plugin_path = plugin_dir +/ "gui_gtk.cmxs" in
+             log_info "Checking for GTK plugin at '%s'" plugin_path;
+             if system#file_exists plugin_path then Some plugin_path else None in
+ 
+-- 
+2.30.2
+
