@@ -5,14 +5,14 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-#KEY=Testing
 KEY=BB546E44A179B1AD424041D70616A2C61C325588 		# 2016 (signing subkey of 94F6E0CC)
+#KEY=Testing
 
 OLD_DEB_VERSION="2.18-1"
 
 VERSION="$1"
 DEBIANVERSION=`echo $VERSION | sed 's/-/~/g'`
-DEBIANMOD="-2"
+DEBIANMOD="-2.1"
 #TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION.tar.bz2"
 TMP_TAR="/home/tal/Out/zero-install/0install/$VERSION/0install-$VERSION-debian.tbz"
 
@@ -54,6 +54,8 @@ if true; then
 	#echo "Updating pbuilder"
 	#sudo pbuilder --update
 	echo "Test source with pbuilder"
+	# TODO: Ideally, build with --twice here. But need to sort out lwt_glib vendoring first.
+	# Should probably update the -debian source archive to ignore the vendor directory.
 	sudo pbuilder --build ${BUILD_DIR}/zeroinstall-injector_${DEBIANVERSION}${DEBIANMOD}.dsc
 
 	echo Running lintian...
