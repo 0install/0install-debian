@@ -1,3 +1,12 @@
+zeroinstall-injector (2.18-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * debian/control: Drop explicit dependency on libgtk-3-0. The dependency
+    will be implicitly listed automatically. This helps to solve issues
+    with time_64 transition. (Closes: #1067170)
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 21 Mar 2024 10:43:37 -0400
+
 zeroinstall-injector (2.18-2) unstable; urgency=medium
 
   * Fix build on bytecode-only platforms. Closes: #1022235.

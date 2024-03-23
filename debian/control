@@ -30,7 +30,6 @@ Vcs-Git: https://github.com/0install/0install-debian.git
 Package: 0install
 Architecture: any
 Depends: 0install-core (>= ${source:Version}),
-         libgtk-3-0,
          ${misc:Depends},
          ${shlibs:Depends}
 Replaces: 0install-core (<< 2.10-1)
