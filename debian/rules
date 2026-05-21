@@ -51,6 +51,8 @@ binary-arch: build-stamp install
 	dh_installchangelogs -p 0install-core
 	dh_installdocs -a --link-doc=0install-core
 	dh_installman -a
+	dh_installsysusers -a
+	dh_installtmpfiles -a
 	dh_compress -a
 	dh_fixperms -a
 	#dh_ocaml		(not for -custom bytecode)

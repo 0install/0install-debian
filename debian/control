@@ -49,8 +49,7 @@ Description: cross-distribution packaging system
 
 Package: 0install-core
 Architecture: any
-Depends: adduser,
-         bzip2,
+Depends: bzip2,
          ca-certificates,
          gnupg,
          xdg-utils,
